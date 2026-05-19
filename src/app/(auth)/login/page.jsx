@@ -1,63 +1,44 @@
 "use client";
 
 import React, { useState } from "react";
+import toast from "react-hot-toast";
 import Link from "next/link";
 import { Mail, Lock, Eye, EyeOff } from "lucide-react";
 import Image from "next/image";
-
+import { signIn } from "@/lib/auth-client";
+import { useRouter } from "next/navigation";
 
 const inputStyle =
   "w-full pl-12 pr-4 py-3 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-cyan-500";
 
+
+
 const LoginPage = () => {
-  const [formData, setFormData] = useState({
-    email: "",
-    password: "",
-  });
+
+const router = useRouter();
 
   const [showPassword, setShowPassword] = useState(false);
 
-  const [message, setMessage] = useState({
-    loading: false,
-    error: "",
-  });
-
-  const handleChange = (e) => {
-    setFormData({
-      ...formData,
-      [e.target.name]: e.target.value,
-    });
-
-    setMessage({
-      ...message,
-      error: "",
-    });
-  };
-
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-
-    try {
-      setMessage({
-        ...message,
-        loading: true,
+  
+    const handleLogin = async (e) => {
+      e.preventDefault();
+  
+      const formData = new FormData(e.currentTarget);
+      const loginData = Object.fromEntries(formData.entries());
+  
+      const { data, error } = await signIn.email({
+        ...loginData
       });
+  
+      if (error) {
+        console.log(error.message);
+        toast.error(error.message || "Login Failed");
+        return;
+      }
+      toast.success("Login Successful");
+      router.push("/");
+    };
 
-      console.log(formData);
-
-      // Your login API here
-    } catch {
-      setMessage({
-        loading: false,
-        error: "Login failed",
-      });
-    } finally {
-      setMessage((prev) => ({
-        ...prev,
-        loading: false,
-      }));
-    }
-  };
 
   const InputField = ({
     label,
@@ -87,8 +68,6 @@ const LoginPage = () => {
               : type
           }
           name={name}
-          value={formData[name]}
-          onChange={handleChange}
           placeholder={placeholder}
           className={inputStyle}
           required
@@ -127,16 +106,10 @@ const LoginPage = () => {
           </p>
         </div>
 
-        {/* Error */}
-        {message.error && (
-          <div className="mb-4 p-3 rounded-lg bg-red-50 text-red-600 text-sm">
-            {message.error}
-          </div>
-        )}
-
         {/* Form */}
-        <form onSubmit={handleSubmit} className="space-y-5">
+        <form onSubmit={handleLogin} className="space-y-5">
 
+          {/* Email */}
           <InputField
             label="Email"
             icon={Mail}
@@ -145,6 +118,7 @@ const LoginPage = () => {
             placeholder="you@example.com"
           />
 
+          {/* Password */}
           <InputField
             label="Password"
             icon={Lock}
@@ -169,28 +143,33 @@ const LoginPage = () => {
             </Link>
           </div>
 
-          {/* Button */}
+          {/* Submit Button */}
           <button
             type="submit"
-            disabled={message.loading}
             className="w-full py-3 rounded-xl bg-cyan-600 text-white font-semibold hover:bg-cyan-700 transition"
           >
-            {message.loading
-              ? "Signing in..."
-              : "Sign In"}
+            Sign In
           </button>
 
-                <p className="text-center">or</p>
-                <div className="flex items-center justify-center gap-2 rounded-xl border border-gray-300 px-4 py-2 cursor-pointer hover:bg-gray-100 transition">
-                    <Image
-                        src='/googleicon.png'
-                        alt="Google Logo"
-                        width={18}
-                        height={18}
-                    />
-                    Continue with Google
-                </div>
+          {/* Divider */}
+          <p className="text-center text-gray-500">
+            or
+          </p>
 
+          {/* Google Button */}
+          <button
+            type="button"
+            className="w-full flex items-center justify-center gap-2 rounded-xl border border-gray-300 px-4 py-3 hover:bg-gray-100 transition"
+          >
+            <Image
+              src="/googleicon.png"
+              alt="Google Logo"
+              width={18}
+              height={18}
+            />
+
+            Continue with Google
+          </button>
         </form>
 
         {/* Footer */}
