@@ -76,9 +76,11 @@ const AppointmentCard = ({ appointment }) => {
             </h3>
           </div>
 
-          <button className="rounded-2xl bg-cyan-600 px-5 py-3 text-sm font-semibold text-white transition-all duration-300 hover:bg-cyan-700 hover:shadow-lg active:scale-95">
-            <Link href={`/appointments/${appointment._id}`}> View Details </Link>
+        <Link href={`/appointments/${appointment._id}`} className="">
+          <button className="rounded-2xl cursor-pointer bg-cyan-600 px-5 py-3 text-sm font-semibold text-white transition-all duration-300 hover:bg-cyan-700 hover:shadow-lg active:scale-95">
+             View Details 
           </button>
+          </Link>
         </div>
       </div>
     </div>
