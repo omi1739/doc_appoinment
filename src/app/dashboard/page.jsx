@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import { useSession, authClient } from "@/lib/auth-client";
 import { useRouter } from "next/navigation";
 import toast from "react-hot-toast";
@@ -62,7 +62,7 @@ export default function Dashboard() {
   }, [session, isPending, router]);
 
   // Fetch bookings when session is loaded
-  const fetchBookings = async () => {
+  const fetchBookings = useCallback(async () => {
     if (!session) return;
     setLoadingBookings(true);
     try {
@@ -93,13 +93,15 @@ export default function Dashboard() {
     } finally {
       setLoadingBookings(false);
     }
-  };
+  }, [session]);
 
   useEffect(() => {
     if (session) {
-      fetchBookings();
+      Promise.resolve().then(() => {
+        fetchBookings();
+      });
     }
-  }, [session]);
+  }, [session, fetchBookings]);
 
   const handleLogout = async () => {
     await authClient.signOut();
@@ -212,7 +214,7 @@ export default function Dashboard() {
     setIsUpdatingProfile(true);
 
     try {
-      const { data, error } = await authClient.user.update({
+      const { data, error } = await authClient.updateUser({
         name: profileFormData.name,
         image: profileFormData.image,
       });
@@ -354,7 +356,7 @@ export default function Dashboard() {
                     </div>
                     <h3 className="text-xl font-bold text-gray-900 mb-1">No Bookings Yet</h3>
                     <p className="text-gray-500 max-w-sm mb-6">
-                      You haven't scheduled any appointments yet. Book a session with one of our trusted medical professionals.
+                      You haven&apos;t scheduled any appointments yet. Book a session with one of our trusted medical professionals.
                     </p>
                     <button
                       onClick={() => router.push("/appointments")}
@@ -460,7 +462,7 @@ export default function Dashboard() {
                     <div className="space-y-1 text-center sm:text-left">
                       <span className="text-xs font-semibold text-cyan-600 bg-cyan-50 px-2.5 py-1 rounded-full uppercase">Registered Member</span>
                       <h2 className="text-2xl font-bold text-gray-900 mt-2">{session.user?.name}</h2>
-                      <p className="text-sm text-gray-500">Member since {new Date(session.user?.createdAt || Date.now()).toLocaleDateString()}</p>
+                      <p className="text-sm text-gray-500">Member since {session.user?.createdAt ? new Date(session.user.createdAt).toLocaleDateString() : "N/A"}</p>
                     </div>
                   </div>
 

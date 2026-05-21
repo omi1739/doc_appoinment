@@ -23,14 +23,14 @@ const Navbar = () => {
   return (
     <div className="sticky top-0 z-50 bg-white shadow-md">
       
-      <nav className="max-w-7xl mx-auto px-4 py-4 flex justify-between items-center">
+      <nav className="max-w-7xl mx-auto px-4  flex justify-between items-center">
 
         {/* Logo */}
         <Link href="/">
           <Image
             src="/logo.png"
-            width={80}
-            height={30}
+            width={100}
+            height={20}
             alt="Doctor Appointment Logo"
           />
         </Link>

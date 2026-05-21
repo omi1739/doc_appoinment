@@ -18,6 +18,45 @@ import { useRouter } from "next/navigation";
 const inputStyle =
   "w-full pl-12 pr-4 py-3 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-cyan-500";
 
+const InputField = ({
+  label,
+  icon: Icon,
+  type = "text",
+  name,
+  placeholder,
+  password,
+  showPassword,
+  setShowPassword,
+}) => (
+  <div>
+    <label className="block mb-2 text-sm font-semibold text-gray-700">
+      {label}
+    </label>
+
+    <div className="relative">
+      <Icon size={18} className="absolute left-4 top-3.5 text-gray-400" />
+
+      <input
+        type={password ? (showPassword ? "text" : "password") : type}
+        name={name}
+        placeholder={placeholder}
+        className={inputStyle}
+        required
+      />
+
+      {password && (
+        <button
+          type="button"
+          onClick={() => setShowPassword(!showPassword)}
+          className="absolute right-4 top-3.5 text-gray-400"
+        >
+          {showPassword ? <EyeOff size={18} /> : <Eye size={18} />}
+        </button>
+      )}
+    </div>
+  </div>
+);
+
 const RegisterPage = () => {
   const router = useRouter();
 
@@ -41,43 +80,6 @@ const RegisterPage = () => {
     toast.success("Registration Successful");
     router.push("/");
   };
-
-  const InputField = ({
-    label,
-    icon: Icon,
-    type = "text",
-    name,
-    placeholder,
-    password,
-  }) => (
-    <div>
-      <label className="block mb-2 text-sm font-semibold text-gray-700">
-        {label}
-      </label>
-
-      <div className="relative">
-        <Icon size={18} className="absolute left-4 top-3.5 text-gray-400" />
-
-        <input
-          type={password ? (showPassword ? "text" : "password") : type}
-          name={name}
-          placeholder={placeholder}
-          className={inputStyle}
-          required
-        />
-
-        {password && (
-          <button
-            type="button"
-            onClick={() => setShowPassword(!showPassword)}
-            className="absolute right-4 top-3.5 text-gray-400"
-          >
-            {showPassword ? <EyeOff size={18} /> : <Eye size={18} />}
-          </button>
-        )}
-      </div>
-    </div>
-  );
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-cyan-50 px-4 py-10">
@@ -123,6 +125,8 @@ const RegisterPage = () => {
             name="password"
             placeholder="••••••••"
             password
+            showPassword={showPassword}
+            setShowPassword={setShowPassword}
           />
 
           {/* Submit Button */}
