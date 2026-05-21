@@ -15,6 +15,8 @@ const inputStyle =
 
 const LoginPage = () => {
 
+    
+
 const router = useRouter();
 
   const [showPassword, setShowPassword] = useState(false);
@@ -29,6 +31,8 @@ const router = useRouter();
       const { data, error } = await signIn.email({
         ...loginData
       });
+
+   
   
       if (error) {
         console.log(error.message);
