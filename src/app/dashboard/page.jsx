@@ -245,490 +245,490 @@ export default function Dashboard() {
     );
   }
 
-//   return (
-//     <div className="min-h-screen bg-linear-to-br from-cyan-50/40 via-white to-blue-50/40 py-10 px-4 sm:px-6 lg:px-8">
-//       <div className="max-w-7xl mx-auto">
+  return (
+    <div className="min-h-screen bg-linear-to-br from-cyan-50/40 via-white to-blue-50/40 py-10 px-4 sm:px-6 lg:px-8">
+      <div className="max-w-7xl mx-auto">
         
-//         {/* Main Dashboard Layout */}
-//         <div className="grid grid-cols-1 lg:grid-cols-4 gap-8">
+        {/* Main Dashboard Layout */}
+        <div className="grid grid-cols-1 lg:grid-cols-4 gap-8">
           
-//           {/* Sidebar */}
-//           <div className="lg:col-span-1 space-y-6">
+          {/* Sidebar */}
+          <div className="lg:col-span-1 space-y-6">
             
-//             {/* User Profile Card */}
-//             <div className="bg-white/80 backdrop-blur-md border border-gray-100 rounded-3xl p-6 shadow-sm flex flex-col items-center text-center">
-//               <div className="relative w-28 h-28 rounded-full overflow-hidden border-4 border-cyan-100 shadow-inner mb-4">
-//                 <Image
-//                   src={session.user?.image || "/default-avatar.png"}
-//                   alt="User Avatar"
-//                   fill
-//                   className="object-cover"
-//                   unoptimized
-//                 />
-//               </div>
-//               <h2 className="text-xl font-bold text-gray-900 truncate max-w-full">
-//                 {session.user?.name}
-//               </h2>
-//               <p className="text-sm text-gray-500 truncate max-w-full mb-6">
-//                 {session.user?.email}
-//               </p>
+            {/* User Profile Card */}
+            <div className="bg-white/80 backdrop-blur-md border border-gray-100 rounded-3xl p-6 shadow-sm flex flex-col items-center text-center">
+              <div className="relative w-28 h-28 rounded-full overflow-hidden border-4 border-cyan-100 shadow-inner mb-4">
+                <Image
+                  src={session.user?.image || "/default-avatar.png"}
+                  alt="User Avatar"
+                  fill
+                  className="object-cover"
+                  unoptimized
+                />
+              </div>
+              <h2 className="text-xl font-bold text-gray-900 truncate max-w-full">
+                {session.user?.name}
+              </h2>
+              <p className="text-sm text-gray-500 truncate max-w-full mb-6">
+                {session.user?.email}
+              </p>
 
-//               {/* Navigation Menu */}
-//               <div className="w-full space-y-2">
-//                 <button
-//                   onClick={() => setActiveTab("bookings")}
-//                   className={`w-full flex items-center gap-3 px-4 py-3 rounded-2xl text-sm font-semibold transition-all cursor-pointer ${
-//                     activeTab === "bookings"
-//                       ? "bg-cyan-600 text-white shadow-md shadow-cyan-600/10"
-//                       : "text-gray-600 hover:bg-gray-50"
-//                   }`}
-//                 >
-//                   <Grid size={18} />
-//                   My Bookings
-//                 </button>
+              {/* Navigation Menu */}
+              <div className="w-full space-y-2">
+                <button
+                  onClick={() => setActiveTab("bookings")}
+                  className={`w-full flex items-center gap-3 px-4 py-3 rounded-2xl text-sm font-semibold transition-all cursor-pointer ${
+                    activeTab === "bookings"
+                      ? "bg-cyan-600 text-white shadow-md shadow-cyan-600/10"
+                      : "text-gray-600 hover:bg-gray-50"
+                  }`}
+                >
+                  <Grid size={18} />
+                  My Bookings
+                </button>
 
-//                 <button
-//                   onClick={() => setActiveTab("profile")}
-//                   className={`w-full flex items-center gap-3 px-4 py-3 rounded-2xl text-sm font-semibold transition-all cursor-pointer ${
-//                     activeTab === "profile"
-//                       ? "bg-cyan-600 text-white shadow-md shadow-cyan-600/10"
-//                       : "text-gray-600 hover:bg-gray-50"
-//                   }`}
-//                 >
-//                   <UserCheck size={18} />
-//                   My Profile
-//                 </button>
+                <button
+                  onClick={() => setActiveTab("profile")}
+                  className={`w-full flex items-center gap-3 px-4 py-3 rounded-2xl text-sm font-semibold transition-all cursor-pointer ${
+                    activeTab === "profile"
+                      ? "bg-cyan-600 text-white shadow-md shadow-cyan-600/10"
+                      : "text-gray-600 hover:bg-gray-50"
+                  }`}
+                >
+                  <UserCheck size={18} />
+                  My Profile
+                </button>
 
-//                 <div className="border-t border-gray-100 my-4 pt-4"></div>
+                <div className="border-t border-gray-100 my-4 pt-4"></div>
 
-//                 <button
-//                   onClick={handleLogout}
-//                   className="w-full flex items-center gap-3 px-4 py-3 rounded-2xl text-sm font-semibold text-red-600 hover:bg-red-50 hover:text-red-700 transition-all cursor-pointer"
-//                 >
-//                   <LogOut size={18} />
-//                   Logout
-//                 </button>
-//               </div>
-//             </div>
-//           </div>
+                <button
+                  onClick={handleLogout}
+                  className="w-full flex items-center gap-3 px-4 py-3 rounded-2xl text-sm font-semibold text-red-600 hover:bg-red-50 hover:text-red-700 transition-all cursor-pointer"
+                >
+                  <LogOut size={18} />
+                  Logout
+                </button>
+              </div>
+            </div>
+          </div>
 
-//           {/* Main Dashboard Content */}
-//           <div className="lg:col-span-3 space-y-6">
+          {/* Main Dashboard Content */}
+          <div className="lg:col-span-3 space-y-6">
             
-//             {/* Header Title */}
-//             <div className="bg-white/80 backdrop-blur-md border border-gray-100 rounded-3xl p-6 shadow-sm flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
-//               <div>
-//                 <h1 className="text-3xl font-extrabold text-gray-900 tracking-tight">
-//                   {activeTab === "bookings" ? "Manage Appointments" : "Account Settings"}
-//                 </h1>
-//                 <p className="text-sm text-gray-500 mt-1">
-//                   {activeTab === "bookings" 
-//                     ? "View and edit your upcoming consultations." 
-//                     : "Update your profile image and display name."
-//                   }
-//                 </p>
-//               </div>
-//               {activeTab === "bookings" && (
-//                 <button
-//                   onClick={() => router.push("/appointments")}
-//                   className="inline-flex items-center gap-2 px-5 py-2.5 bg-cyan-100 hover:bg-cyan-200 text-cyan-700 font-bold text-sm rounded-xl transition cursor-pointer"
-//                 >
-//                   <PlusCircle size={16} />
-//                   Book New
-//                 </button>
-//               )}
-//             </div>
+            {/* Header Title */}
+            <div className="bg-white/80 backdrop-blur-md border border-gray-100 rounded-3xl p-6 shadow-sm flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
+              <div>
+                <h1 className="text-3xl font-extrabold text-gray-900 tracking-tight">
+                  {activeTab === "bookings" ? "Manage Appointments" : "Account Settings"}
+                </h1>
+                <p className="text-sm text-gray-500 mt-1">
+                  {activeTab === "bookings" 
+                    ? "View and edit your upcoming consultations." 
+                    : "Update your profile image and display name."
+                  }
+                </p>
+              </div>
+              {activeTab === "bookings" && (
+                <button
+                  onClick={() => router.push("/appointments")}
+                  className="inline-flex items-center gap-2 px-5 py-2.5 bg-cyan-100 hover:bg-cyan-200 text-cyan-700 font-bold text-sm rounded-xl transition cursor-pointer"
+                >
+                  <PlusCircle size={16} />
+                  Book New
+                </button>
+              )}
+            </div>
 
-//             {/* TAB CONTENT: MY BOOKINGS */}
-//             {activeTab === "bookings" && (
-//               <div>
-//                 {loadingBookings ? (
-//                   <div className="bg-white/80 backdrop-blur-md border border-gray-100 rounded-3xl p-16 shadow-sm flex flex-col items-center justify-center">
-//                     <div className="w-10 h-10 border-4 border-cyan-500 border-t-transparent rounded-full animate-spin mb-4"></div>
-//                     <p className="text-gray-500 font-medium">Fetching appointment data...</p>
-//                   </div>
-//                 ) : bookings.length === 0 ? (
-//                   <div className="bg-white/80 backdrop-blur-md border border-gray-100 rounded-3xl p-16 shadow-sm flex flex-col items-center text-center">
-//                     <div className="w-16 h-16 bg-cyan-50 rounded-full flex items-center justify-center mb-4">
-//                       <Heart className="text-cyan-600" size={32} />
-//                     </div>
-//                     <h3 className="text-xl font-bold text-gray-900 mb-1">No Bookings Yet</h3>
-//                     <p className="text-gray-500 max-w-sm mb-6">
-//                       You haven't scheduled any appointments yet. Book a session with one of our trusted medical professionals.
-//                     </p>
-//                     <button
-//                       onClick={() => router.push("/appointments")}
-//                       className="px-6 py-3 bg-cyan-600 hover:bg-cyan-700 text-white font-bold rounded-2xl shadow-lg shadow-cyan-600/10 hover:shadow-cyan-600/20 transition cursor-pointer"
-//                     >
-//                       Browse Available Doctors
-//                     </button>
-//                   </div>
-//                 ) : (
-//                   <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-//                     {bookings.map((booking) => (
-//                       <div 
-//                         key={booking._id} 
-//                         className="bg-white border border-gray-200 rounded-3xl p-6 shadow-xs hover:shadow-md transition-all duration-300 relative overflow-hidden"
-//                       >
-//                         {/* Top Accent line */}
-//                         <div className="absolute top-0 left-0 right-0 h-1.5 bg-linear-to-r from-cyan-400 to-blue-500"></div>
+            {/* TAB CONTENT: MY BOOKINGS */}
+            {activeTab === "bookings" && (
+              <div>
+                {loadingBookings ? (
+                  <div className="bg-white/80 backdrop-blur-md border border-gray-100 rounded-3xl p-16 shadow-sm flex flex-col items-center justify-center">
+                    <div className="w-10 h-10 border-4 border-cyan-500 border-t-transparent rounded-full animate-spin mb-4"></div>
+                    <p className="text-gray-500 font-medium">Fetching appointment data...</p>
+                  </div>
+                ) : bookings.length === 0 ? (
+                  <div className="bg-white/80 backdrop-blur-md border border-gray-100 rounded-3xl p-16 shadow-sm flex flex-col items-center text-center">
+                    <div className="w-16 h-16 bg-cyan-50 rounded-full flex items-center justify-center mb-4">
+                      <Heart className="text-cyan-600" size={32} />
+                    </div>
+                    <h3 className="text-xl font-bold text-gray-900 mb-1">No Bookings Yet</h3>
+                    <p className="text-gray-500 max-w-sm mb-6">
+                      You haven't scheduled any appointments yet. Book a session with one of our trusted medical professionals.
+                    </p>
+                    <button
+                      onClick={() => router.push("/appointments")}
+                      className="px-6 py-3 bg-cyan-600 hover:bg-cyan-700 text-white font-bold rounded-2xl shadow-lg shadow-cyan-600/10 hover:shadow-cyan-600/20 transition cursor-pointer"
+                    >
+                      Browse Available Doctors
+                    </button>
+                  </div>
+                ) : (
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    {bookings.map((booking) => (
+                      <div 
+                        key={booking._id} 
+                        className="bg-white border border-gray-200 rounded-3xl p-6 shadow-xs hover:shadow-md transition-all duration-300 relative overflow-hidden"
+                      >
+                        {/* Top Accent line */}
+                        <div className="absolute top-0 left-0 right-0 h-1.5 bg-linear-to-r from-cyan-400 to-blue-500"></div>
 
-//                         {/* Doctor Details */}
-//                         <div className="flex items-start gap-4 mb-4">
-//                           <div className="relative w-16 h-16 rounded-2xl overflow-hidden bg-cyan-50 flex items-center justify-center">
-//                             {booking.doctorImage ? (
-//                               <Image
-//                                 src={booking.doctorImage}
-//                                 alt={booking.doctorName}
-//                                 fill
-//                                 className="object-cover"
-//                                 unoptimized
-//                               />
-//                             ) : (
-//                               <Users className="text-cyan-600" size={24} />
-//                             )}
-//                           </div>
-//                           <div>
-//                             <h3 className="text-lg font-bold text-gray-900">{booking.doctorName}</h3>
-//                             <span className="inline-block bg-cyan-50 text-cyan-600 text-xs font-semibold px-2.5 py-1 rounded-full mt-1">
-//                               {booking.specialty || "Specialist"}
-//                             </span>
-//                           </div>
-//                         </div>
+                        {/* Doctor Details */}
+                        <div className="flex items-start gap-4 mb-4">
+                          <div className="relative w-16 h-16 rounded-2xl overflow-hidden bg-cyan-50 flex items-center justify-center">
+                            {booking.doctorImage ? (
+                              <Image
+                                src={booking.doctorImage}
+                                alt={booking.doctorName}
+                                fill
+                                className="object-cover"
+                                unoptimized
+                              />
+                            ) : (
+                              <Users className="text-cyan-600" size={24} />
+                            )}
+                          </div>
+                          <div>
+                            <h3 className="text-lg font-bold text-gray-900">{booking.doctorName}</h3>
+                            <span className="inline-block bg-cyan-50 text-cyan-600 text-xs font-semibold px-2.5 py-1 rounded-full mt-1">
+                              {booking.specialty || "Specialist"}
+                            </span>
+                          </div>
+                        </div>
 
-//                         {/* Appointment/Patient Info */}
-//                         <div className="bg-gray-50/80 rounded-2xl p-4 space-y-2 text-sm text-gray-600 mb-6">
-//                           <div className="flex items-center gap-2">
-//                             <User size={14} className="text-gray-400 shrink-0" />
-//                             <span><span className="font-semibold text-gray-700">Patient:</span> {booking.patientName} ({booking.gender})</span>
-//                           </div>
-//                           <div className="flex items-center gap-2">
-//                             <Phone size={14} className="text-gray-400 shrink-0" />
-//                             <span><span className="font-semibold text-gray-700">Phone:</span> {booking.phone}</span>
-//                           </div>
-//                           <div className="flex items-center gap-2">
-//                             <Calendar size={14} className="text-gray-400 shrink-0" />
-//                             <span><span className="font-semibold text-gray-700">Date:</span> {booking.appointmentDate}</span>
-//                           </div>
-//                           <div className="flex items-center gap-2">
-//                             <Clock size={14} className="text-gray-400 shrink-0" />
-//                             <span><span className="font-semibold text-gray-700">Time:</span> {booking.appointmentTime}</span>
-//                           </div>
-//                         </div>
+                        {/* Appointment/Patient Info */}
+                        <div className="bg-gray-50/80 rounded-2xl p-4 space-y-2 text-sm text-gray-600 mb-6">
+                          <div className="flex items-center gap-2">
+                            <User size={14} className="text-gray-400 shrink-0" />
+                            <span><span className="font-semibold text-gray-700">Patient:</span> {booking.patientName} ({booking.gender})</span>
+                          </div>
+                          <div className="flex items-center gap-2">
+                            <Phone size={14} className="text-gray-400 shrink-0" />
+                            <span><span className="font-semibold text-gray-700">Phone:</span> {booking.phone}</span>
+                          </div>
+                          <div className="flex items-center gap-2">
+                            <Calendar size={14} className="text-gray-400 shrink-0" />
+                            <span><span className="font-semibold text-gray-700">Date:</span> {booking.appointmentDate}</span>
+                          </div>
+                          <div className="flex items-center gap-2">
+                            <Clock size={14} className="text-gray-400 shrink-0" />
+                            <span><span className="font-semibold text-gray-700">Time:</span> {booking.appointmentTime}</span>
+                          </div>
+                        </div>
 
-//                         {/* Actions */}
-//                         <div className="flex items-center gap-3">
-//                           <button
-//                             onClick={() => openEditBooking(booking)}
-//                             className="grow flex items-center justify-center gap-2 py-2.5 px-4 bg-gray-50 hover:bg-gray-100 text-gray-700 font-bold text-sm rounded-xl border border-gray-200 transition cursor-pointer"
-//                           >
-//                             <Edit3 size={14} />
-//                             Reschedule
-//                           </button>
+                        {/* Actions */}
+                        <div className="flex items-center gap-3">
+                          <button
+                            onClick={() => openEditBooking(booking)}
+                            className="grow flex items-center justify-center gap-2 py-2.5 px-4 bg-gray-50 hover:bg-gray-100 text-gray-700 font-bold text-sm rounded-xl border border-gray-200 transition cursor-pointer"
+                          >
+                            <Edit3 size={14} />
+                            Reschedule
+                          </button>
                           
-//                           <button
-//                             onClick={() => handleDeleteBooking(booking._id)}
-//                             className="flex items-center justify-center p-2.5 bg-red-50 hover:bg-red-100 text-red-600 hover:text-red-700 rounded-xl border border-red-100 transition cursor-pointer"
-//                             title="Cancel Appointment"
-//                           >
-//                             <Trash2 size={16} />
-//                           </button>
-//                         </div>
-//                       </div>
-//                     ))}
-//                   </div>
-//                 )}
-//               </div>
-//             )}
+                          <button
+                            onClick={() => handleDeleteBooking(booking._id)}
+                            className="flex items-center justify-center p-2.5 bg-red-50 hover:bg-red-100 text-red-600 hover:text-red-700 rounded-xl border border-red-100 transition cursor-pointer"
+                            title="Cancel Appointment"
+                          >
+                            <Trash2 size={16} />
+                          </button>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                )}
+              </div>
+            )}
 
-//             {/* TAB CONTENT: MY PROFILE */}
-//             {activeTab === "profile" && (
-//               <div className="bg-white/80 backdrop-blur-md border border-gray-100 rounded-3xl p-8 shadow-sm">
-//                 <div className="max-w-2xl space-y-6">
+            {/* TAB CONTENT: MY PROFILE */}
+            {activeTab === "profile" && (
+              <div className="bg-white/80 backdrop-blur-md border border-gray-100 rounded-3xl p-8 shadow-sm">
+                <div className="max-w-2xl space-y-6">
                   
-//                   {/* Detailed User Information */}
-//                   <div className="flex flex-col sm:flex-row items-center gap-6 pb-6 border-b border-gray-100">
-//                     <div className="relative w-24 h-24 rounded-full overflow-hidden border-2 border-gray-200">
-//                       <Image
-//                         src={session.user?.image || "/default-avatar.png"}
-//                         alt="Profile avatar"
-//                         fill
-//                         className="object-cover"
-//                         unoptimized
-//                       />
-//                     </div>
-//                     <div className="space-y-1 text-center sm:text-left">
-//                       <span className="text-xs font-semibold text-cyan-600 bg-cyan-50 px-2.5 py-1 rounded-full uppercase">Registered Member</span>
-//                       <h2 className="text-2xl font-bold text-gray-900 mt-2">{session.user?.name}</h2>
-//                       <p className="text-sm text-gray-500">Member since {new Date(session.user?.createdAt || Date.now()).toLocaleDateString()}</p>
-//                     </div>
-//                   </div>
+                  {/* Detailed User Information */}
+                  <div className="flex flex-col sm:flex-row items-center gap-6 pb-6 border-b border-gray-100">
+                    <div className="relative w-24 h-24 rounded-full overflow-hidden border-2 border-gray-200">
+                      <Image
+                        src={session.user?.image || "/default-avatar.png"}
+                        alt="Profile avatar"
+                        fill
+                        className="object-cover"
+                        unoptimized
+                      />
+                    </div>
+                    <div className="space-y-1 text-center sm:text-left">
+                      <span className="text-xs font-semibold text-cyan-600 bg-cyan-50 px-2.5 py-1 rounded-full uppercase">Registered Member</span>
+                      <h2 className="text-2xl font-bold text-gray-900 mt-2">{session.user?.name}</h2>
+                      <p className="text-sm text-gray-500">Member since {new Date(session.user?.createdAt || Date.now()).toLocaleDateString()}</p>
+                    </div>
+                  </div>
 
-//                   <div className="space-y-4">
-//                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                  <div className="space-y-4">
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                       
-//                       {/* Name Card */}
-//                       <div className="bg-gray-50 border border-gray-100 p-5 rounded-2xl flex items-start gap-4">
-//                         <div className="w-10 h-10 rounded-xl bg-cyan-50 flex items-center justify-center shrink-0">
-//                           <User className="text-cyan-600" size={20} />
-//                         </div>
-//                         <div>
-//                           <span className="block text-xs font-semibold text-gray-400 uppercase">Display Name</span>
-//                           <span className="font-semibold text-gray-800 text-sm mt-0.5 block">{session.user?.name}</span>
-//                         </div>
-//                       </div>
+                      {/* Name Card */}
+                      <div className="bg-gray-50 border border-gray-100 p-5 rounded-2xl flex items-start gap-4">
+                        <div className="w-10 h-10 rounded-xl bg-cyan-50 flex items-center justify-center shrink-0">
+                          <User className="text-cyan-600" size={20} />
+                        </div>
+                        <div>
+                          <span className="block text-xs font-semibold text-gray-400 uppercase">Display Name</span>
+                          <span className="font-semibold text-gray-800 text-sm mt-0.5 block">{session.user?.name}</span>
+                        </div>
+                      </div>
 
-//                       {/* Email Card */}
-//                       <div className="bg-gray-50 border border-gray-100 p-5 rounded-2xl flex items-start gap-4">
-//                         <div className="w-10 h-10 rounded-xl bg-cyan-50 flex items-center justify-center shrink-0">
-//                           <Mail className="text-cyan-600" size={20} />
-//                         </div>
-//                         <div>
-//                           <span className="block text-xs font-semibold text-gray-400 uppercase">Email Address</span>
-//                           <span className="font-semibold text-gray-800 text-sm mt-0.5 block">{session.user?.email}</span>
-//                         </div>
-//                       </div>
+                      {/* Email Card */}
+                      <div className="bg-gray-50 border border-gray-100 p-5 rounded-2xl flex items-start gap-4">
+                        <div className="w-10 h-10 rounded-xl bg-cyan-50 flex items-center justify-center shrink-0">
+                          <Mail className="text-cyan-600" size={20} />
+                        </div>
+                        <div>
+                          <span className="block text-xs font-semibold text-gray-400 uppercase">Email Address</span>
+                          <span className="font-semibold text-gray-800 text-sm mt-0.5 block">{session.user?.email}</span>
+                        </div>
+                      </div>
 
-//                     </div>
-//                   </div>
+                    </div>
+                  </div>
 
-//                   <div className="pt-6">
-//                     <button
-//                       onClick={openEditProfile}
-//                       className="px-6 py-3 bg-cyan-600 hover:bg-cyan-700 text-white font-bold rounded-2xl shadow-md transition cursor-pointer"
-//                     >
-//                       Update Profile Details
-//                     </button>
-//                   </div>
-//                 </div>
-//               </div>
-//             )}
-//           </div>
-//         </div>
-//       </div>
+                  <div className="pt-6">
+                    <button
+                      onClick={openEditProfile}
+                      className="px-6 py-3 bg-cyan-600 hover:bg-cyan-700 text-white font-bold rounded-2xl shadow-md transition cursor-pointer"
+                    >
+                      Update Profile Details
+                    </button>
+                  </div>
+                </div>
+              </div>
+            )}
+          </div>
+        </div>
+      </div>
 
-//       {/* MODAL: RESCHEDULE/EDIT BOOKING */}
-//       {editBooking && (
-//         <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/40 backdrop-blur-md">
-//           <div className="relative w-full max-w-lg overflow-hidden bg-white shadow-2xl rounded-3xl border border-gray-100 animate-scale-up">
+      {/* MODAL: RESCHEDULE/EDIT BOOKING */}
+      {editBooking && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/40 backdrop-blur-md">
+          <div className="relative w-full max-w-lg overflow-hidden bg-white shadow-2xl rounded-3xl border border-gray-100 animate-scale-up">
             
-//             {/* Header */}
-//             <div className="flex items-center justify-between border-b border-gray-100 px-6 py-4 bg-linear-to-r from-cyan-50 to-blue-50">
-//               <div>
-//                 <h3 className="text-xl font-bold text-gray-900">Reschedule Appointment</h3>
-//                 <p className="text-sm text-gray-500 mt-0.5">Edit details for booking</p>
-//               </div>
-//               <button
-//                 onClick={() => setEditBooking(null)}
-//                 className="p-2 text-gray-400 hover:text-gray-600 rounded-full hover:bg-gray-100 transition cursor-pointer"
-//               >
-//                 <X size={20} />
-//               </button>
-//             </div>
+            {/* Header */}
+            <div className="flex items-center justify-between border-b border-gray-100 px-6 py-4 bg-linear-to-r from-cyan-50 to-blue-50">
+              <div>
+                <h3 className="text-xl font-bold text-gray-900">Reschedule Appointment</h3>
+                <p className="text-sm text-gray-500 mt-0.5">Edit details for booking</p>
+              </div>
+              <button
+                onClick={() => setEditBooking(null)}
+                className="p-2 text-gray-400 hover:text-gray-600 rounded-full hover:bg-gray-100 transition cursor-pointer"
+              >
+                <X size={20} />
+              </button>
+            </div>
 
-//             {/* Form */}
-//             <form onSubmit={handleUpdateBooking} className="p-6 space-y-4">
+            {/* Form */}
+            <form onSubmit={handleUpdateBooking} className="p-6 space-y-4">
               
-//               {/* Readonly Info */}
-//               <div className="grid grid-cols-2 gap-4 p-4 bg-gray-50 rounded-2xl border border-gray-100 text-sm">
-//                 <div>
-//                   <span className="block text-xs font-semibold text-gray-400 uppercase">Doctor (Read Only)</span>
-//                   <span className="font-semibold text-gray-700">{editBooking.doctorName}</span>
-//                 </div>
-//                 <div>
-//                   <span className="block text-xs font-semibold text-gray-400 uppercase">Your Email (Read Only)</span>
-//                   <span className="font-semibold text-gray-700 truncate block">{editBooking.userEmail}</span>
-//                 </div>
-//               </div>
+              {/* Readonly Info */}
+              <div className="grid grid-cols-2 gap-4 p-4 bg-gray-50 rounded-2xl border border-gray-100 text-sm">
+                <div>
+                  <span className="block text-xs font-semibold text-gray-400 uppercase">Doctor (Read Only)</span>
+                  <span className="font-semibold text-gray-700">{editBooking.doctorName}</span>
+                </div>
+                <div>
+                  <span className="block text-xs font-semibold text-gray-400 uppercase">Your Email (Read Only)</span>
+                  <span className="font-semibold text-gray-700 truncate block">{editBooking.userEmail}</span>
+                </div>
+              </div>
 
-//               {/* Patient Name */}
-//               <div className="space-y-1.5">
-//                 <label className="block text-sm font-semibold text-gray-700">Patient Name</label>
-//                 <div className="relative">
-//                   <User size={18} className="absolute left-4 top-3 text-gray-400" />
-//                   <input
-//                     type="text"
-//                     name="patientName"
-//                     value={bookingFormData.patientName}
-//                     onChange={handleBookingFormChange}
-//                     className="w-full pl-11 pr-4 py-2.5 border border-gray-200 rounded-xl focus:outline-hidden focus:ring-2 focus:ring-cyan-500"
-//                     required
-//                   />
-//                 </div>
-//               </div>
+              {/* Patient Name */}
+              <div className="space-y-1.5">
+                <label className="block text-sm font-semibold text-gray-700">Patient Name</label>
+                <div className="relative">
+                  <User size={18} className="absolute left-4 top-3 text-gray-400" />
+                  <input
+                    type="text"
+                    name="patientName"
+                    value={bookingFormData.patientName}
+                    onChange={handleBookingFormChange}
+                    className="w-full pl-11 pr-4 py-2.5 border border-gray-200 rounded-xl focus:outline-hidden focus:ring-2 focus:ring-cyan-500"
+                    required
+                  />
+                </div>
+              </div>
 
-//               {/* Gender & Phone */}
-//               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-//                 <div className="space-y-1.5">
-//                   <label className="block text-sm font-semibold text-gray-700">Gender</label>
-//                   <select
-//                     name="gender"
-//                     value={bookingFormData.gender}
-//                     onChange={handleBookingFormChange}
-//                     className="w-full px-4 py-2.5 border border-gray-200 rounded-xl focus:outline-hidden focus:ring-2 focus:ring-cyan-500 bg-white"
-//                     required
-//                   >
-//                     <option value="Male">Male</option>
-//                     <option value="Female">Female</option>
-//                     <option value="Other">Other</option>
-//                   </select>
-//                 </div>
+              {/* Gender & Phone */}
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <div className="space-y-1.5">
+                  <label className="block text-sm font-semibold text-gray-700">Gender</label>
+                  <select
+                    name="gender"
+                    value={bookingFormData.gender}
+                    onChange={handleBookingFormChange}
+                    className="w-full px-4 py-2.5 border border-gray-200 rounded-xl focus:outline-hidden focus:ring-2 focus:ring-cyan-500 bg-white"
+                    required
+                  >
+                    <option value="Male">Male</option>
+                    <option value="Female">Female</option>
+                    <option value="Other">Other</option>
+                  </select>
+                </div>
 
-//                 <div className="space-y-1.5">
-//                   <label className="block text-sm font-semibold text-gray-700">Phone Number</label>
-//                   <div className="relative">
-//                     <Phone size={18} className="absolute left-4 top-3 text-gray-400" />
-//                     <input
-//                       type="tel"
-//                       name="phone"
-//                       value={bookingFormData.phone}
-//                       onChange={handleBookingFormChange}
-//                       className="w-full pl-11 pr-4 py-2.5 border border-gray-200 rounded-xl focus:outline-hidden focus:ring-2 focus:ring-cyan-500"
-//                       required
-//                     />
-//                   </div>
-//                 </div>
-//               </div>
+                <div className="space-y-1.5">
+                  <label className="block text-sm font-semibold text-gray-700">Phone Number</label>
+                  <div className="relative">
+                    <Phone size={18} className="absolute left-4 top-3 text-gray-400" />
+                    <input
+                      type="tel"
+                      name="phone"
+                      value={bookingFormData.phone}
+                      onChange={handleBookingFormChange}
+                      className="w-full pl-11 pr-4 py-2.5 border border-gray-200 rounded-xl focus:outline-hidden focus:ring-2 focus:ring-cyan-500"
+                      required
+                    />
+                  </div>
+                </div>
+              </div>
 
-//               {/* Date & Time */}
-//               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-//                 <div className="space-y-1.5">
-//                   <label className="block text-sm font-semibold text-gray-700">Preferred Date</label>
-//                   <div className="relative">
-//                     <Calendar size={18} className="absolute left-4 top-3.5 text-gray-400" />
-//                     <input
-//                       type="date"
-//                       name="appointmentDate"
-//                       value={bookingFormData.appointmentDate}
-//                       onChange={handleBookingFormChange}
-//                       className="w-full pl-11 pr-4 py-2.5 border border-gray-200 rounded-xl focus:outline-hidden focus:ring-2 focus:ring-cyan-500 text-gray-700 bg-white"
-//                       required
-//                     />
-//                   </div>
-//                 </div>
+              {/* Date & Time */}
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <div className="space-y-1.5">
+                  <label className="block text-sm font-semibold text-gray-700">Preferred Date</label>
+                  <div className="relative">
+                    <Calendar size={18} className="absolute left-4 top-3.5 text-gray-400" />
+                    <input
+                      type="date"
+                      name="appointmentDate"
+                      value={bookingFormData.appointmentDate}
+                      onChange={handleBookingFormChange}
+                      className="w-full pl-11 pr-4 py-2.5 border border-gray-200 rounded-xl focus:outline-hidden focus:ring-2 focus:ring-cyan-500 text-gray-700 bg-white"
+                      required
+                    />
+                  </div>
+                </div>
 
-//                 <div className="space-y-1.5">
-//                   <label className="block text-sm font-semibold text-gray-700">Preferred Time Slot</label>
-//                   <div className="relative">
-//                     <Clock size={18} className="absolute left-4 top-3.5 text-gray-400" />
-//                     <select
-//                       name="appointmentTime"
-//                       value={bookingFormData.appointmentTime}
-//                       onChange={handleBookingFormChange}
-//                       className="w-full pl-11 pr-4 py-2.5 border border-gray-200 rounded-xl focus:outline-hidden focus:ring-2 focus:ring-cyan-500 text-gray-700 bg-white"
-//                       required
-//                     >
-//                       <option value="">Select Time Slot</option>
-//                       <option value="09:00 AM - 10:00 AM">09:00 AM - 10:00 AM</option>
-//                       <option value="10:00 AM - 11:00 AM">10:00 AM - 11:00 AM</option>
-//                       <option value="11:00 AM - 12:00 PM">11:00 AM - 12:00 PM</option>
-//                       <option value="04:00 PM - 05:00 PM">04:00 PM - 05:00 PM</option>
-//                       <option value="05:00 PM - 06:00 PM">05:00 PM - 06:00 PM</option>
-//                       <option value="06:00 PM - 07:00 PM">06:00 PM - 07:00 PM</option>
-//                     </select>
-//                   </div>
-//                 </div>
-//               </div>
+                <div className="space-y-1.5">
+                  <label className="block text-sm font-semibold text-gray-700">Preferred Time Slot</label>
+                  <div className="relative">
+                    <Clock size={18} className="absolute left-4 top-3.5 text-gray-400" />
+                    <select
+                      name="appointmentTime"
+                      value={bookingFormData.appointmentTime}
+                      onChange={handleBookingFormChange}
+                      className="w-full pl-11 pr-4 py-2.5 border border-gray-200 rounded-xl focus:outline-hidden focus:ring-2 focus:ring-cyan-500 text-gray-700 bg-white"
+                      required
+                    >
+                      <option value="">Select Time Slot</option>
+                      <option value="09:00 AM - 10:00 AM">09:00 AM - 10:00 AM</option>
+                      <option value="10:00 AM - 11:00 AM">10:00 AM - 11:00 AM</option>
+                      <option value="11:00 AM - 12:00 PM">11:00 AM - 12:00 PM</option>
+                      <option value="04:00 PM - 05:00 PM">04:00 PM - 05:00 PM</option>
+                      <option value="05:00 PM - 06:00 PM">05:00 PM - 06:00 PM</option>
+                      <option value="06:00 PM - 07:00 PM">06:00 PM - 07:00 PM</option>
+                    </select>
+                  </div>
+                </div>
+              </div>
 
-//               {/* Submit Button */}
-//               <button
-//                 type="submit"
-//                 disabled={isUpdatingBooking}
-//                 className="w-full mt-6 py-3.5 bg-cyan-600 hover:bg-cyan-700 text-white font-bold rounded-xl transition shadow-md hover:shadow-lg disabled:bg-gray-400 flex items-center justify-center gap-2 cursor-pointer"
-//               >
-//                 {isUpdatingBooking ? (
-//                   <>
-//                     <svg className="animate-spin h-5 w-5 text-white" fill="none" viewBox="0 0 24 24">
-//                       <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" />
-//                       <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z" />
-//                     </svg>
-//                     Saving Changes...
-//                   </>
-//                 ) : (
-//                   "Save Changes"
-//                 )}
-//               </button>
-//             </form>
-//           </div>
-//         </div>
-//       )}
+              {/* Submit Button */}
+              <button
+                type="submit"
+                disabled={isUpdatingBooking}
+                className="w-full mt-6 py-3.5 bg-cyan-600 hover:bg-cyan-700 text-white font-bold rounded-xl transition shadow-md hover:shadow-lg disabled:bg-gray-400 flex items-center justify-center gap-2 cursor-pointer"
+              >
+                {isUpdatingBooking ? (
+                  <>
+                    <svg className="animate-spin h-5 w-5 text-white" fill="none" viewBox="0 0 24 24">
+                      <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" />
+                      <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z" />
+                    </svg>
+                    Saving Changes...
+                  </>
+                ) : (
+                  "Save Changes"
+                )}
+              </button>
+            </form>
+          </div>
+        </div>
+      )}
 
-//       {/* MODAL: UPDATE USER PROFILE */}
-//       {showProfileModal && (
-//         <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/40 backdrop-blur-md">
-//           <div className="relative w-full max-w-md overflow-hidden bg-white shadow-2xl rounded-3xl border border-gray-100 animate-scale-up">
+      {/* MODAL: UPDATE USER PROFILE */}
+      {showProfileModal && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/40 backdrop-blur-md">
+          <div className="relative w-full max-w-md overflow-hidden bg-white shadow-2xl rounded-3xl border border-gray-100 animate-scale-up">
             
-//             {/* Header */}
-//             <div className="flex items-center justify-between border-b border-gray-100 px-6 py-4 bg-linear-to-r from-cyan-50 to-blue-50">
-//               <div>
-//                 <h3 className="text-xl font-bold text-gray-900">Update Profile Details</h3>
-//                 <p className="text-sm text-gray-500 mt-0.5">Modify your membership details</p>
-//               </div>
-//               <button
-//                 onClick={() => setShowProfileModal(false)}
-//                 className="p-2 text-gray-400 hover:text-gray-600 rounded-full hover:bg-gray-100 transition cursor-pointer"
-//               >
-//                 <X size={20} />
-//               </button>
-//             </div>
+            {/* Header */}
+            <div className="flex items-center justify-between border-b border-gray-100 px-6 py-4 bg-linear-to-r from-cyan-50 to-blue-50">
+              <div>
+                <h3 className="text-xl font-bold text-gray-900">Update Profile Details</h3>
+                <p className="text-sm text-gray-500 mt-0.5">Modify your membership details</p>
+              </div>
+              <button
+                onClick={() => setShowProfileModal(false)}
+                className="p-2 text-gray-400 hover:text-gray-600 rounded-full hover:bg-gray-100 transition cursor-pointer"
+              >
+                <X size={20} />
+              </button>
+            </div>
 
-//             {/* Form */}
-//             <form onSubmit={handleUpdateProfile} className="p-6 space-y-4">
+            {/* Form */}
+            <form onSubmit={handleUpdateProfile} className="p-6 space-y-4">
               
-//               {/* Display Name */}
-//               <div className="space-y-1.5">
-//                 <label className="block text-sm font-semibold text-gray-700">Display Name</label>
-//                 <div className="relative">
-//                   <User size={18} className="absolute left-4 top-3 text-gray-400" />
-//                   <input
-//                     type="text"
-//                     value={profileFormData.name}
-//                     onChange={(e) => setProfileFormData(prev => ({ ...prev, name: e.target.value }))}
-//                     className="w-full pl-11 pr-4 py-2.5 border border-gray-200 rounded-xl focus:outline-hidden focus:ring-2 focus:ring-cyan-500"
-//                     placeholder="E.g., Siyam Islam"
-//                     required
-//                   />
-//                 </div>
-//               </div>
+              {/* Display Name */}
+              <div className="space-y-1.5">
+                <label className="block text-sm font-semibold text-gray-700">Display Name</label>
+                <div className="relative">
+                  <User size={18} className="absolute left-4 top-3 text-gray-400" />
+                  <input
+                    type="text"
+                    value={profileFormData.name}
+                    onChange={(e) => setProfileFormData(prev => ({ ...prev, name: e.target.value }))}
+                    className="w-full pl-11 pr-4 py-2.5 border border-gray-200 rounded-xl focus:outline-hidden focus:ring-2 focus:ring-cyan-500"
+                    placeholder="E.g., Siyam Islam"
+                    required
+                  />
+                </div>
+              </div>
 
-//               {/* Profile Image URL */}
-//               <div className="space-y-1.5">
-//                 <label className="block text-sm font-semibold text-gray-700">Profile Photo URL</label>
-//                 <div className="relative">
-//                   <ImageIcon size={18} className="absolute left-4 top-3 text-gray-400" />
-//                   <input
-//                     type="url"
-//                     value={profileFormData.image}
-//                     onChange={(e) => setProfileFormData(prev => ({ ...prev, image: e.target.value }))}
-//                     className="w-full pl-11 pr-4 py-2.5 border border-gray-200 rounded-xl focus:outline-hidden focus:ring-2 focus:ring-cyan-500"
-//                     placeholder="https://example.com/image.jpg"
-//                     required
-//                   />
-//                 </div>
-//               </div>
+              {/* Profile Image URL */}
+              <div className="space-y-1.5">
+                <label className="block text-sm font-semibold text-gray-700">Profile Photo URL</label>
+                <div className="relative">
+                  <ImageIcon size={18} className="absolute left-4 top-3 text-gray-400" />
+                  <input
+                    type="url"
+                    value={profileFormData.image}
+                    onChange={(e) => setProfileFormData(prev => ({ ...prev, image: e.target.value }))}
+                    className="w-full pl-11 pr-4 py-2.5 border border-gray-200 rounded-xl focus:outline-hidden focus:ring-2 focus:ring-cyan-500"
+                    placeholder="https://example.com/image.jpg"
+                    required
+                  />
+                </div>
+              </div>
 
-//               {/* Submit Button */}
-//               <button
-//                 type="submit"
-//                 disabled={isUpdatingProfile}
-//                 className="w-full mt-6 py-3.5 bg-cyan-600 hover:bg-cyan-700 text-white font-bold rounded-xl transition shadow-md hover:shadow-lg disabled:bg-gray-400 flex items-center justify-center gap-2 cursor-pointer"
-//               >
-//                 {isUpdatingProfile ? (
-//                   <>
-//                     <svg className="animate-spin h-5 w-5 text-white" fill="none" viewBox="0 0 24 24">
-//                       <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" />
-//                       <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z" />
-//                     </svg>
-//                     Updating profile...
-//                   </>
-//                 ) : (
-//                   "Save Details"
-//                 )}
-//               </button>
-//             </form>
-//           </div>
-//         </div>
-//       )}
-//     </div>
-//   );
+              {/* Submit Button */}
+              <button
+                type="submit"
+                disabled={isUpdatingProfile}
+                className="w-full mt-6 py-3.5 bg-cyan-600 hover:bg-cyan-700 text-white font-bold rounded-xl transition shadow-md hover:shadow-lg disabled:bg-gray-400 flex items-center justify-center gap-2 cursor-pointer"
+              >
+                {isUpdatingProfile ? (
+                  <>
+                    <svg className="animate-spin h-5 w-5 text-white" fill="none" viewBox="0 0 24 24">
+                      <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" />
+                      <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z" />
+                    </svg>
+                    Updating profile...
+                  </>
+                ) : (
+                  "Save Details"
+                )}
+              </button>
+            </form>
+          </div>
+        </div>
+      )}
+    </div>
+  );
 }
