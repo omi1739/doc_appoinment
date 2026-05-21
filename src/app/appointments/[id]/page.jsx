@@ -1,18 +1,31 @@
 import React from "react";
 import Image from "next/image";
 import { MapPin, Briefcase, Building2, Clock, Star } from "lucide-react";
+import { auth } from "@/lib/auth";
+import { headers } from "next/headers";
+import BookingSection from "@/components/BookingSection";
 
-const fetchSingleAppointment = async (id) => {
+const fetchSingleAppointment = async (id, token) => {
   const res = await fetch(
-    `${process.env.NEXT_PUBLIC_API_URL}/appointments/${id}`,
+    `${process.env.NEXT_PUBLIC_API_URL}/appointments/${id}`,{
+      headers:{
+        authorization: `Bearer ${token}` || ""
+      }
+    }
   );
-  const data = res.json();
+  const data = await res.json();
   return data || {};
 };
 
 const AppointmentDetails = async ({ params }) => {
   const { id } = await params;
-  const appointment = await fetchSingleAppointment(id);
+
+  const { token } = await auth.api.getToken({
+    headers: await headers(), // headers containing the user's session token
+  });
+  console.log(token);
+
+  const appointment = await fetchSingleAppointment(id, token);
 
   // Mock availability times (replace with actual data when available)
   const availabilitySlots = appointment.availability || [
@@ -74,10 +87,7 @@ const AppointmentDetails = async ({ params }) => {
               <div className="grid grid-cols-2 gap-6 py-6 border-t border-b border-gray-200">
                 {/* Experience */}
                 <div className="flex items-start gap-3">
-                  <Clock
-                    className="text-cyan-600 shrink-0 mt-1"
-                    size={24}
-                  />
+                  <Clock className="text-cyan-600 shrink-0 mt-1" size={24} />
                   <div>
                     <p className="text-sm text-gray-500 font-medium">
                       Experience
@@ -106,10 +116,7 @@ const AppointmentDetails = async ({ params }) => {
 
                 {/* Location */}
                 <div className="flex items-start gap-3">
-                  <MapPin
-                    className="text-cyan-600 shrink-0 mt-1"
-                    size={24}
-                  />
+                  <MapPin className="text-cyan-600 shrink-0 mt-1" size={24} />
                   <div>
                     <p className="text-sm text-gray-500 font-medium">
                       Location
@@ -148,16 +155,18 @@ const AppointmentDetails = async ({ params }) => {
                       key={index}
                       className="px-4 py-2 bg-cyan-100 text-cyan-700 rounded-full text-sm font-medium"
                     >
-                      {slot} 
+                      {typeof slot === "object" ? `${slot.time} - ${slot.end}` : slot}
                     </span>
                   ))}
                 </div>
               </div>
 
-              {/* Book Button */}
-              <button className="w-full mt-8 px-8 py-4 bg-cyan-600 text-white font-semibold rounded-2xl hover:bg-cyan-700 transition-all duration-300 hover:shadow-lg active:scale-95">
-                Book Appointment
-              </button>
+              {/* Booking Button & Modal */}
+              <BookingSection
+                appointmentId={id}
+                doctorName={appointment.name || appointment.doctor_name || "Dr. Smith"}
+                fee={appointment.fee || "500"}
+              />
             </div>
           </div>
         </div>

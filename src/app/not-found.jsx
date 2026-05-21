@@ -6,7 +6,7 @@ const NotFoundPage = () => {
     <div>
       This Page is Not Found.
 
-      <Link className='bg-black text-white padding-3 cursor-pointer rounded' href={'/'}>Back to home</Link>
+      <Link className='bg-black text-white p-3 cursor-pointer rounded' href={'/'}>Back to home</Link>
     </div>
   )
 }
