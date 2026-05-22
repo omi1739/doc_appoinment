@@ -11,6 +11,8 @@ export const auth = betterAuth({
     // Optional: if you don't provide a client, database transactions won't be enabled.
     client
   }),
+  baseURL: process.env.BETTER_AUTH_URL,
+  trustedOrigins: [process.env.BETTER_AUTH_URL, "https://doc-appoinment-coral.vercel.app"],
    emailAndPassword: {    
         enabled: true
     },
