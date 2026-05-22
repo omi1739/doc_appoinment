@@ -20,10 +20,23 @@ const fetchSingleAppointment = async (id, token) => {
 const AppointmentDetails = async ({ params }) => {
   const { id } = await params;
 
-  const { token } = await auth.api.getToken({
-    headers: await headers(), // headers containing the user's session token
-  });
-  console.log(token);
+  const baseURL = process.env.BETTER_AUTH_URL || process.env.NEXT_PUBLIC_BETTER_AUTH_URL || "http://localhost:3000";
+  const headersList = await headers();
+  const cookie = headersList.get("cookie") || "";
+
+  let token = null;
+  try {
+    const tokenRes = await fetch(`${baseURL}/api/auth/token`, {
+      headers: { cookie },
+      cache: "no-store"
+    });
+    if (tokenRes.ok) {
+      const data = await tokenRes.json();
+      token = data?.token;
+    }
+  } catch (e) {
+    console.error("Failed to fetch token:", e);
+  }
 
   const appointment = await fetchSingleAppointment(id, token);
 
