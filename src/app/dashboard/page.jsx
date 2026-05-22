@@ -23,8 +23,9 @@ import {
   Users
 } from "lucide-react";
 import Image from "next/image";
+import ConfirmDeleteModal from "@/components/ConfirmDeleteModal";
 
-export default function Dashboard() {
+ function Dashboard() {
   const { data: session, isPending } = useSession();
   const router = useRouter();
   
@@ -53,6 +54,11 @@ export default function Dashboard() {
     name: "",
     image: "",
   });
+
+  // Delete Confirmation Modal State
+  const [showDeleteModal, setShowDeleteModal] = useState(false);
+  const [deleteBookingId, setDeleteBookingId] = useState(null);
+  const [isDeletingBooking, setIsDeletingBooking] = useState(false);
 
   // Redirect if not logged in
   useEffect(() => {
@@ -170,16 +176,23 @@ export default function Dashboard() {
     }
   };
 
-  // Handle Booking Delete
-  const handleDeleteBooking = async (bookingId) => {
-    if (!confirm("Are you sure you want to cancel this appointment?")) return;
+  // Handle Booking Delete - Show Confirmation Modal
+  const handleDeleteBooking = (bookingId) => {
+    setDeleteBookingId(bookingId);
+    setShowDeleteModal(true);
+  };
 
+  // Confirm Delete - Perform the actual deletion
+  const confirmDelete = async () => {
+    if (!deleteBookingId) return;
+
+    setIsDeletingBooking(true);
     try {
       const tokenRes = await fetch("/api/token");
       const tokenData = await tokenRes.json();
       const token = tokenData.token;
 
-      const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL || "http://localhost:5000"}/bookings/${bookingId}`, {
+      const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL || "http://localhost:5000"}/bookings/${deleteBookingId}`, {
         method: "DELETE",
         headers: {
           Authorization: `Bearer ${token}`,
@@ -192,11 +205,21 @@ export default function Dashboard() {
 
       toast.success("Appointment cancelled successfully!");
       // Update UI instantly
-      setBookings((prev) => prev.filter((b) => b._id !== bookingId));
+      setBookings((prev) => prev.filter((b) => b._id !== deleteBookingId));
+      setShowDeleteModal(false);
+      setDeleteBookingId(null);
     } catch (error) {
       console.error(error);
       toast.error(error.message || "Could not cancel appointment");
+    } finally {
+      setIsDeletingBooking(false);
     }
+  };
+
+  // Cancel Delete - Close the modal
+  const cancelDelete = () => {
+    setShowDeleteModal(false);
+    setDeleteBookingId(null);
   };
 
   // Open Edit Profile Modal
@@ -731,6 +754,19 @@ export default function Dashboard() {
           </div>
         </div>
       )}
+
+      {/* MODAL: CONFIRM DELETE APPOINTMENT */}
+      <ConfirmDeleteModal
+        isOpen={showDeleteModal}
+        title="Cancel Appointment?"
+        message="Are you sure you want to cancel this appointment? This action cannot be undone."
+        onConfirm={confirmDelete}
+        onCancel={cancelDelete}
+        isLoading={isDeletingBooking}
+      />
     </div>
   );
 }
+
+export default Dashboard;
+

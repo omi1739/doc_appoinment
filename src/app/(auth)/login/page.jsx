@@ -67,7 +67,9 @@ const InputField = ({
 
 const LoginPage = () => {
 
-    
+    const handleGoogleLogin = () => {
+
+    }
 
 const router = useRouter();
 

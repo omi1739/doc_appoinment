@@ -11,9 +11,9 @@ export default function AppointmentSearch({ appointments = [] }) {
 
   // Get unique specialties from appointments
   const specialties = useMemo(() => {
-    const unique = [...new Set(appointments.map((apt) => apt.specialty))].filter(
-      Boolean
-    );
+    const unique = [
+      ...new Set(appointments.map((apt) => apt.specialty)),
+    ].filter(Boolean);
     return unique.sort();
   }, [appointments]);
 
@@ -21,10 +21,18 @@ export default function AppointmentSearch({ appointments = [] }) {
   const filteredAppointments = useMemo(() => {
     return appointments.filter((appointment) => {
       const matchesSearch =
-        (appointment.name || "").toLowerCase().includes(searchQuery.toLowerCase()) ||
-        (appointment.specialty || "").toLowerCase().includes(searchQuery.toLowerCase()) ||
-        (appointment.location || "").toLowerCase().includes(searchQuery.toLowerCase()) ||
-        (appointment.description || "").toLowerCase().includes(searchQuery.toLowerCase());
+        (appointment.name || "")
+          .toLowerCase()
+          .includes(searchQuery.toLowerCase()) ||
+        (appointment.specialty || "")
+          .toLowerCase()
+          .includes(searchQuery.toLowerCase()) ||
+        (appointment.location || "")
+          .toLowerCase()
+          .includes(searchQuery.toLowerCase()) ||
+        (appointment.description || "")
+          .toLowerCase()
+          .includes(searchQuery.toLowerCase());
 
       const matchesSpecialty =
         filterSpecialty === "all" || appointment.specialty === filterSpecialty;
@@ -50,7 +58,10 @@ export default function AppointmentSearch({ appointments = [] }) {
         <div className="mb-10 space-y-4">
           {/* Search Bar */}
           <div className="relative">
-            <Search className="absolute left-4 top-3.5 text-gray-400" size={20} />
+            <Search
+              className="absolute left-4 top-3.5 text-gray-400"
+              size={20}
+            />
             <input
               type="text"
               placeholder="Search by doctor name, specialty, location..."
