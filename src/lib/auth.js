@@ -9,7 +9,11 @@ const db = client.db('docAppoint');
 export const auth = betterAuth({
   database: mongodbAdapter(db),
   baseURL: process.env.BETTER_AUTH_URL,
-  trustedOrigins: [process.env.BETTER_AUTH_URL, "https://doc-appoinment-coral.vercel.app"],
+  trustedOrigins: [
+    process.env.BETTER_AUTH_URL, 
+    "https://doc-appoinment-coral.vercel.app",
+    "http://localhost:3000"
+  ],
    emailAndPassword: {    
         enabled: true
     },
