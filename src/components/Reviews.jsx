@@ -6,25 +6,25 @@ export default function Reviews() {
   const reviews = [
     {
       id: 1,
-      name: "Sarah Jenkins",
+      name: "Sadia Jannat",
       role: "Regular Patient",
-      image: "https://i.pravatar.cc/150?img=1",
+     
       rating: 5,
       content: "Booking my cardiologist appointment was incredibly easy. The platform is seamless, and the doctor was extremely professional."
     },
     {
       id: 2,
-      name: "Michael Chen",
+      name: "Abid Hasnine",
       role: "Verified Patient",
-      image: "https://i.pravatar.cc/150?img=11",
+      
       rating: 5,
       content: "I love how I can manage all my bookings in one place. The dark mode feature is a nice touch too! Highly recommend."
     },
     {
       id: 3,
-      name: "Emily Rodriguez",
+      name: "Siam Reja",
       role: "Verified Patient",
-      image: "https://i.pravatar.cc/150?img=5",
+      
       rating: 4,
       content: "Great experience overall. The doctors are highly qualified, and the consultation fees are very transparent."
     }
@@ -68,14 +68,7 @@ export default function Reviews() {
               </p>
 
               <div className="flex items-center gap-4 mt-auto">
-                <div className="relative w-12 h-12 rounded-full overflow-hidden border-2 border-cyan-100 dark:border-cyan-900/50">
-                  <Image 
-                    src={review.image} 
-                    alt={review.name} 
-                    fill
-                    className="object-cover"
-                  />
-                </div>
+                
                 <div>
                   <h4 className="font-bold text-gray-900 dark:text-white">{review.name}</h4>
                   <p className="text-sm text-cyan-600 dark:text-cyan-400 font-medium">{review.role}</p>
