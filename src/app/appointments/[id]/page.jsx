@@ -19,7 +19,7 @@ const fetchSingleAppointment = async (id, token) => {
 const AppointmentDetails = async ({ params }) => {
   const { id } = await params;
 
-  const baseURL = process.env.BETTER_AUTH_URL || process.env.NEXT_PUBLIC_BETTER_AUTH_URL || "http://localhost:3000";
+  const baseURL = process.env.BETTER_AUTH_URL || process.env.NEXT_PUBLIC_BETTER_AUTH_URL || (process.env.VERCEL_URL ? `https://${process.env.VERCEL_URL}` : "https://doc-appoinment-coral.vercel.app");
   const headersList = await headers();
   const cookie = headersList.get("cookie") || "";
 

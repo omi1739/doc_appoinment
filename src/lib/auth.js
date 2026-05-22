@@ -19,10 +19,17 @@ const getDb = () => {
 
 const db = getDb();
 
+const getBaseURL = () => {
+  if (process.env.BETTER_AUTH_URL) return process.env.BETTER_AUTH_URL;
+  if (process.env.NEXT_PUBLIC_BETTER_AUTH_URL) return process.env.NEXT_PUBLIC_BETTER_AUTH_URL;
+  if (process.env.VERCEL_URL) return `https://${process.env.VERCEL_URL}`;
+  return "https://doc-appoinment-coral.vercel.app"; // Default to your deployment URL
+};
+
 export const auth = betterAuth({
   database: db ? mongodbAdapter(db) : undefined,
   secret: process.env.BETTER_AUTH_SECRET || "development-secret-key-123456",
-  baseURL: process.env.BETTER_AUTH_URL || process.env.NEXT_PUBLIC_BETTER_AUTH_URL || "http://localhost:3000",
+  baseURL: getBaseURL(),
   trustedOrigins: [
     "https://doc-appoinment-coral.vercel.app",
     "http://localhost:3000",
@@ -33,8 +40,8 @@ export const auth = betterAuth({
   },
   socialProviders: {
     google: { 
-      clientId: process.env.GOOGLE_CLIENT_ID || "missing", 
-      clientSecret: process.env.GOOGLE_CLIENT_SECRET || "missing", 
+      clientId: process.env.GOOGLE_CLIENT_ID || "", 
+      clientSecret: process.env.GOOGLE_CLIENT_SECRET || "", 
     }, 
   },
   session: {
