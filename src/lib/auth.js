@@ -13,12 +13,11 @@ const db = client.db('docAppoint');
 export const auth = betterAuth({
   database: mongodbAdapter(db),
   secret: process.env.BETTER_AUTH_SECRET,
-  baseURL: process.env.BETTER_AUTH_URL,
+  baseURL: process.env.BETTER_AUTH_URL || "https://doc-appoinment-coral.vercel.app",
   trustedOrigins: [
-    process.env.BETTER_AUTH_URL, 
     "https://doc-appoinment-coral.vercel.app",
     "http://localhost:3000"
-  ].filter(Boolean),
+  ],
    emailAndPassword: {    
         enabled: true
     },
@@ -28,13 +27,10 @@ export const auth = betterAuth({
             clientSecret: process.env.GOOGLE_CLIENT_SECRET || "", 
         }, 
     },
-
-    session:{
-        cookieCache: {
-            enabled:true,
-            strategy: 'jwt',
-            maxAge: 5 * 24 * 60 * 60, // 5 days
-        }
+    // Simplified session config for better reliability
+    session: {
+      expiresIn: 60 * 60 * 24 * 7, // 7 days
+      updateAge: 60 * 60 * 24, // 1 day
     },
 
       plugins: [

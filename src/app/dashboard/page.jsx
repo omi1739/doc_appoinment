@@ -88,14 +88,16 @@ import ConfirmDeleteModal from "@/components/ConfirmDeleteModal";
       });
 
       if (!res.ok) {
-        throw new Error("Failed to fetch bookings");
+        const errorText = await res.text();
+        console.error("Fetch bookings failed:", res.status, errorText);
+        throw new Error(`Server returned ${res.status}: ${errorText || 'Failed to fetch bookings'}`);
       }
 
       const data = await res.json();
       setBookings(data);
     } catch (error) {
-      console.error(error);
-      toast.error(error.message || "Failed to load bookings");
+      console.error("Dashboard fetch error details:", error);
+      toast.error(error.message || "Failed to load bookings. Please check your backend connection.");
     } finally {
       setLoadingBookings(false);
     }

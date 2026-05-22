@@ -47,7 +47,10 @@ export default function BookingSection({ appointmentId, doctorName, fee }) {
       }
 
       // 2. Submit booking to Express backend
-      const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL || "http://localhost:5000"}/bookings/${appointmentId}`, {
+      const backendUrl = process.env.NEXT_PUBLIC_API_URL || "http://localhost:5000";
+      console.log("Attempting booking at:", `${backendUrl}/bookings/${appointmentId}`);
+      
+      const res = await fetch(`${backendUrl}/bookings/${appointmentId}`, {
         method: "PATCH",
         headers: {
           "Content-Type": "application/json",
@@ -57,8 +60,9 @@ export default function BookingSection({ appointmentId, doctorName, fee }) {
       });
 
       if (!res.ok) {
-        const errData = await res.json();
-        throw new Error(errData.message || "Failed to book appointment");
+        const errorText = await res.text();
+        console.error("Booking submission failed:", res.status, errorText);
+        throw new Error(`Server error (${res.status}): ${errorText || 'Failed to book appointment'}`);
       }
 
       toast.success("Appointment booked successfully!");
