@@ -36,7 +36,15 @@ Make sure you have **Node.js** installed on your machine.
    ```
 
 3. **Environment Variables:**
-   Create a `.env` file in the root directory and add your MongoDB URI and Better Auth secrets.
+   Create a `.env` file in the root directory and add the following:
+   ```env
+   MONGODB_URI=your_mongodb_uri
+   BETTER_AUTH_SECRET=your_secret_at_least_32_chars
+   BETTER_AUTH_URL=http://localhost:3000
+   GOOGLE_CLIENT_ID=your_google_client_id
+   GOOGLE_CLIENT_SECRET=your_google_client_secret
+   NEXT_PUBLIC_API_URL=http://localhost:3000/api
+   ```
 
 4. **Run the development server:**
    ```bash

@@ -271,7 +271,7 @@ import ConfirmDeleteModal from "@/components/ConfirmDeleteModal";
   }
 
   return (
-    <div className="min-h-screen bg-linear-to-br from-cyan-50/40 via-white to-blue-50/40 py-10 px-4 sm:px-6 lg:px-8">
+    <div className="min-h-screen bg-linear-to-br from-cyan-50/40 via-white to-blue-50/40 dark:from-slate-950 dark:via-slate-900 dark:to-slate-950 py-10 px-4 sm:px-6 lg:px-8 transition-colors duration-300">
       <div className="max-w-7xl mx-auto">
         
         {/* Main Dashboard Layout */}
@@ -281,8 +281,8 @@ import ConfirmDeleteModal from "@/components/ConfirmDeleteModal";
           <div className="lg:col-span-1 space-y-6">
             
             {/* User Profile Card */}
-            <div className="bg-white/80 backdrop-blur-md border border-gray-100 rounded-3xl p-6 shadow-sm flex flex-col items-center text-center">
-              <div className="relative w-28 h-28 rounded-full overflow-hidden border-4 border-cyan-100 shadow-inner mb-4">
+            <div className="bg-white/80 dark:bg-slate-900/80 backdrop-blur-md border border-gray-100 dark:border-slate-800 rounded-3xl p-6 shadow-sm flex flex-col items-center text-center">
+              <div className="relative w-28 h-28 rounded-full overflow-hidden border-4 border-cyan-100 dark:border-cyan-900/30 shadow-inner mb-4">
                 <Image
                   src={session.user?.image || "/default-avatar.png"}
                   alt="User Avatar"
@@ -291,10 +291,10 @@ import ConfirmDeleteModal from "@/components/ConfirmDeleteModal";
                   unoptimized
                 />
               </div>
-              <h2 className="text-xl font-bold text-gray-900 truncate max-w-full">
+              <h2 className="text-xl font-bold text-gray-900 dark:text-white truncate max-w-full">
                 {session.user?.name}
               </h2>
-              <p className="text-sm text-gray-500 truncate max-w-full mb-6">
+              <p className="text-sm text-gray-500 dark:text-slate-400 truncate max-w-full mb-6">
                 {session.user?.email}
               </p>
 
@@ -305,7 +305,7 @@ import ConfirmDeleteModal from "@/components/ConfirmDeleteModal";
                   className={`w-full flex items-center gap-3 px-4 py-3 rounded-2xl text-sm font-semibold transition-all cursor-pointer ${
                     activeTab === "bookings"
                       ? "bg-cyan-600 text-white shadow-md shadow-cyan-600/10"
-                      : "text-gray-600 hover:bg-gray-50"
+                      : "text-gray-600 dark:text-slate-400 hover:bg-gray-50 dark:hover:bg-slate-800/50"
                   }`}
                 >
                   <Grid size={18} />
@@ -317,18 +317,18 @@ import ConfirmDeleteModal from "@/components/ConfirmDeleteModal";
                   className={`w-full flex items-center gap-3 px-4 py-3 rounded-2xl text-sm font-semibold transition-all cursor-pointer ${
                     activeTab === "profile"
                       ? "bg-cyan-600 text-white shadow-md shadow-cyan-600/10"
-                      : "text-gray-600 hover:bg-gray-50"
+                      : "text-gray-600 dark:text-slate-400 hover:bg-gray-50 dark:hover:bg-slate-800/50"
                   }`}
                 >
                   <UserCheck size={18} />
                   My Profile
                 </button>
 
-                <div className="border-t border-gray-100 my-4 pt-4"></div>
+                <div className="border-t border-gray-100 dark:border-slate-800 my-4 pt-4"></div>
 
                 <button
                   onClick={handleLogout}
-                  className="w-full flex items-center gap-3 px-4 py-3 rounded-2xl text-sm font-semibold text-red-600 hover:bg-red-50 hover:text-red-700 transition-all cursor-pointer"
+                  className="w-full flex items-center gap-3 px-4 py-3 rounded-2xl text-sm font-semibold text-red-600 dark:text-red-400 hover:bg-red-50 dark:hover:bg-red-900/20 hover:text-red-700 dark:hover:text-red-300 transition-all cursor-pointer"
                 >
                   <LogOut size={18} />
                   Logout
@@ -341,12 +341,12 @@ import ConfirmDeleteModal from "@/components/ConfirmDeleteModal";
           <div className="lg:col-span-3 space-y-6">
             
             {/* Header Title */}
-            <div className="bg-white/80 backdrop-blur-md border border-gray-100 rounded-3xl p-6 shadow-sm flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
+            <div className="bg-white/80 dark:bg-slate-900/80 backdrop-blur-md border border-gray-100 dark:border-slate-800 rounded-3xl p-6 shadow-sm flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
               <div>
-                <h1 className="text-3xl font-extrabold text-gray-900 tracking-tight">
+                <h1 className="text-3xl font-extrabold text-gray-900 dark:text-white tracking-tight">
                   {activeTab === "bookings" ? "Manage Appointments" : "Account Settings"}
                 </h1>
-                <p className="text-sm text-gray-500 mt-1">
+                <p className="text-sm text-gray-500 dark:text-slate-400 mt-1">
                   {activeTab === "bookings" 
                     ? "View and edit your upcoming consultations." 
                     : "Update your profile image and display name."
@@ -356,7 +356,7 @@ import ConfirmDeleteModal from "@/components/ConfirmDeleteModal";
               {activeTab === "bookings" && (
                 <button
                   onClick={() => router.push("/appointments")}
-                  className="inline-flex items-center gap-2 px-5 py-2.5 bg-cyan-100 hover:bg-cyan-200 text-cyan-700 font-bold text-sm rounded-xl transition cursor-pointer"
+                  className="inline-flex items-center gap-2 px-5 py-2.5 bg-cyan-100 dark:bg-cyan-900/30 hover:bg-cyan-200 dark:hover:bg-cyan-900/50 text-cyan-700 dark:text-cyan-400 font-bold text-sm rounded-xl transition cursor-pointer"
                 >
                   <PlusCircle size={16} />
                   Book New
@@ -368,17 +368,17 @@ import ConfirmDeleteModal from "@/components/ConfirmDeleteModal";
             {activeTab === "bookings" && (
               <div>
                 {loadingBookings ? (
-                  <div className="bg-white/80 backdrop-blur-md border border-gray-100 rounded-3xl p-16 shadow-sm flex flex-col items-center justify-center">
+                  <div className="bg-white/80 dark:bg-slate-900/80 backdrop-blur-md border border-gray-100 dark:border-slate-800 rounded-3xl p-16 shadow-sm flex flex-col items-center justify-center">
                     <div className="w-10 h-10 border-4 border-cyan-500 border-t-transparent rounded-full animate-spin mb-4"></div>
-                    <p className="text-gray-500 font-medium">Fetching appointment data...</p>
+                    <p className="text-gray-500 dark:text-slate-400 font-medium">Fetching appointment data...</p>
                   </div>
                 ) : bookings.length === 0 ? (
-                  <div className="bg-white/80 backdrop-blur-md border border-gray-100 rounded-3xl p-16 shadow-sm flex flex-col items-center text-center">
-                    <div className="w-16 h-16 bg-cyan-50 rounded-full flex items-center justify-center mb-4">
-                      <Heart className="text-cyan-600" size={32} />
+                  <div className="bg-white/80 dark:bg-slate-900/80 backdrop-blur-md border border-gray-100 dark:border-slate-800 rounded-3xl p-16 shadow-sm flex flex-col items-center text-center">
+                    <div className="w-16 h-16 bg-cyan-50 dark:bg-cyan-900/20 rounded-full flex items-center justify-center mb-4">
+                      <Heart className="text-cyan-600 dark:text-cyan-400" size={32} />
                     </div>
-                    <h3 className="text-xl font-bold text-gray-900 mb-1">No Bookings Yet</h3>
-                    <p className="text-gray-500 max-w-sm mb-6">
+                    <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-1">No Bookings Yet</h3>
+                    <p className="text-gray-500 dark:text-slate-400 max-w-sm mb-6">
                       You haven&apos;t scheduled any appointments yet. Book a session with one of our trusted medical professionals.
                     </p>
                     <button
@@ -393,14 +393,14 @@ import ConfirmDeleteModal from "@/components/ConfirmDeleteModal";
                     {bookings.map((booking) => (
                       <div 
                         key={booking._id} 
-                        className="bg-white border border-gray-200 rounded-3xl p-6 shadow-xs hover:shadow-md transition-all duration-300 relative overflow-hidden"
+                        className="bg-white dark:bg-slate-900 border border-gray-200 dark:border-slate-800 rounded-3xl p-6 shadow-xs hover:shadow-md transition-all duration-300 relative overflow-hidden"
                       >
                         {/* Top Accent line */}
                         <div className="absolute top-0 left-0 right-0 h-1.5 bg-linear-to-r from-cyan-400 to-blue-500"></div>
 
                         {/* Doctor Details */}
                         <div className="flex items-start gap-4 mb-4">
-                          <div className="relative w-16 h-16 rounded-2xl overflow-hidden bg-cyan-50 flex items-center justify-center">
+                          <div className="relative w-16 h-16 rounded-2xl overflow-hidden bg-cyan-50 dark:bg-cyan-900/20 flex items-center justify-center">
                             {booking.doctorImage ? (
                               <Image
                                 src={booking.doctorImage}
@@ -410,34 +410,34 @@ import ConfirmDeleteModal from "@/components/ConfirmDeleteModal";
                                 unoptimized
                               />
                             ) : (
-                              <Users className="text-cyan-600" size={24} />
+                              <Users className="text-cyan-600 dark:text-cyan-400" size={24} />
                             )}
                           </div>
                           <div>
-                            <h3 className="text-lg font-bold text-gray-900">{booking.doctorName}</h3>
-                            <span className="inline-block bg-cyan-50 text-cyan-600 text-xs font-semibold px-2.5 py-1 rounded-full mt-1">
+                            <h3 className="text-lg font-bold text-gray-900 dark:text-white">{booking.doctorName}</h3>
+                            <span className="inline-block bg-cyan-50 dark:bg-cyan-900/30 text-cyan-600 dark:text-cyan-400 text-xs font-semibold px-2.5 py-1 rounded-full mt-1">
                               {booking.specialty || "Specialist"}
                             </span>
                           </div>
                         </div>
 
                         {/* Appointment/Patient Info */}
-                        <div className="bg-gray-50/80 rounded-2xl p-4 space-y-2 text-sm text-gray-600 mb-6">
+                        <div className="bg-gray-50/80 dark:bg-slate-800/50 rounded-2xl p-4 space-y-2 text-sm text-gray-600 dark:text-slate-300 mb-6">
                           <div className="flex items-center gap-2">
-                            <User size={14} className="text-gray-400 shrink-0" />
-                            <span><span className="font-semibold text-gray-700">Patient:</span> {booking.patientName} ({booking.gender})</span>
+                            <User size={14} className="text-gray-400 dark:text-slate-500 shrink-0" />
+                            <span><span className="font-semibold text-gray-700 dark:text-slate-200">Patient:</span> {booking.patientName} ({booking.gender})</span>
                           </div>
                           <div className="flex items-center gap-2">
-                            <Phone size={14} className="text-gray-400 shrink-0" />
-                            <span><span className="font-semibold text-gray-700">Phone:</span> {booking.phone}</span>
+                            <Phone size={14} className="text-gray-400 dark:text-slate-500 shrink-0" />
+                            <span><span className="font-semibold text-gray-700 dark:text-slate-200">Phone:</span> {booking.phone}</span>
                           </div>
                           <div className="flex items-center gap-2">
-                            <Calendar size={14} className="text-gray-400 shrink-0" />
-                            <span><span className="font-semibold text-gray-700">Date:</span> {booking.appointmentDate}</span>
+                            <Calendar size={14} className="text-gray-400 dark:text-slate-500 shrink-0" />
+                            <span><span className="font-semibold text-gray-700 dark:text-slate-200">Date:</span> {booking.appointmentDate}</span>
                           </div>
                           <div className="flex items-center gap-2">
-                            <Clock size={14} className="text-gray-400 shrink-0" />
-                            <span><span className="font-semibold text-gray-700">Time:</span> {booking.appointmentTime}</span>
+                            <Clock size={14} className="text-gray-400 dark:text-slate-500 shrink-0" />
+                            <span><span className="font-semibold text-gray-700 dark:text-slate-200">Time:</span> {booking.appointmentTime}</span>
                           </div>
                         </div>
 
@@ -445,7 +445,7 @@ import ConfirmDeleteModal from "@/components/ConfirmDeleteModal";
                         <div className="flex items-center gap-3">
                           <button
                             onClick={() => openEditBooking(booking)}
-                            className="grow flex items-center justify-center gap-2 py-2.5 px-4 bg-gray-50 hover:bg-gray-100 text-gray-700 font-bold text-sm rounded-xl border border-gray-200 transition cursor-pointer"
+                            className="grow flex items-center justify-center gap-2 py-2.5 px-4 bg-gray-50 dark:bg-slate-800 hover:bg-gray-100 dark:hover:bg-slate-700 text-gray-700 dark:text-slate-200 font-bold text-sm rounded-xl border border-gray-200 dark:border-slate-700 transition cursor-pointer"
                           >
                             <Edit3 size={14} />
                             Reschedule
@@ -453,7 +453,7 @@ import ConfirmDeleteModal from "@/components/ConfirmDeleteModal";
                           
                           <button
                             onClick={() => handleDeleteBooking(booking._id)}
-                            className="flex items-center justify-center p-2.5 bg-red-50 hover:bg-red-100 text-red-600 hover:text-red-700 rounded-xl border border-red-100 transition cursor-pointer"
+                            className="flex items-center justify-center p-2.5 bg-red-50 dark:bg-red-900/20 hover:bg-red-100 dark:hover:bg-red-900/40 text-red-600 dark:text-red-400 hover:text-red-700 dark:hover:text-red-300 rounded-xl border border-red-100 dark:border-red-900/30 transition cursor-pointer"
                             title="Cancel Appointment"
                           >
                             <Trash2 size={16} />
@@ -468,12 +468,12 @@ import ConfirmDeleteModal from "@/components/ConfirmDeleteModal";
 
             {/* TAB CONTENT: MY PROFILE */}
             {activeTab === "profile" && (
-              <div className="bg-white/80 backdrop-blur-md border border-gray-100 rounded-3xl p-8 shadow-sm">
+              <div className="bg-white/80 dark:bg-slate-900/80 backdrop-blur-md border border-gray-100 dark:border-slate-800 rounded-3xl p-8 shadow-sm">
                 <div className="max-w-2xl space-y-6">
                   
                   {/* Detailed User Information */}
-                  <div className="flex flex-col sm:flex-row items-center gap-6 pb-6 border-b border-gray-100">
-                    <div className="relative w-24 h-24 rounded-full overflow-hidden border-2 border-gray-200">
+                  <div className="flex flex-col sm:flex-row items-center gap-6 pb-6 border-b border-gray-100 dark:border-slate-800">
+                    <div className="relative w-24 h-24 rounded-full overflow-hidden border-2 border-gray-200 dark:border-slate-700">
                       <Image
                         src={session.user?.image || "/default-avatar.png"}
                         alt="Profile avatar"
@@ -483,9 +483,9 @@ import ConfirmDeleteModal from "@/components/ConfirmDeleteModal";
                       />
                     </div>
                     <div className="space-y-1 text-center sm:text-left">
-                      <span className="text-xs font-semibold text-cyan-600 bg-cyan-50 px-2.5 py-1 rounded-full uppercase">Registered Member</span>
-                      <h2 className="text-2xl font-bold text-gray-900 mt-2">{session.user?.name}</h2>
-                      <p className="text-sm text-gray-500">Member since {session.user?.createdAt ? new Date(session.user.createdAt).toLocaleDateString() : "N/A"}</p>
+                      <span className="text-xs font-semibold text-cyan-600 dark:text-cyan-400 bg-cyan-50 dark:bg-cyan-900/30 px-2.5 py-1 rounded-full uppercase">Registered Member</span>
+                      <h2 className="text-2xl font-bold text-gray-900 dark:text-white mt-2">{session.user?.name}</h2>
+                      <p className="text-sm text-gray-500 dark:text-slate-400">Member since {session.user?.createdAt ? new Date(session.user.createdAt).toLocaleDateString() : "N/A"}</p>
                     </div>
                   </div>
 
@@ -493,24 +493,24 @@ import ConfirmDeleteModal from "@/components/ConfirmDeleteModal";
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                       
                       {/* Name Card */}
-                      <div className="bg-gray-50 border border-gray-100 p-5 rounded-2xl flex items-start gap-4">
-                        <div className="w-10 h-10 rounded-xl bg-cyan-50 flex items-center justify-center shrink-0">
-                          <User className="text-cyan-600" size={20} />
+                      <div className="bg-gray-50 dark:bg-slate-800 border border-gray-100 dark:border-slate-700 p-5 rounded-2xl flex items-start gap-4">
+                        <div className="w-10 h-10 rounded-xl bg-cyan-50 dark:bg-cyan-900/30 flex items-center justify-center shrink-0">
+                          <User className="text-cyan-600 dark:text-cyan-400" size={20} />
                         </div>
                         <div>
                           <span className="block text-xs font-semibold text-gray-400 uppercase">Display Name</span>
-                          <span className="font-semibold text-gray-800 text-sm mt-0.5 block">{session.user?.name}</span>
+                          <span className="font-semibold text-gray-800 dark:text-slate-200 text-sm mt-0.5 block">{session.user?.name}</span>
                         </div>
                       </div>
 
                       {/* Email Card */}
-                      <div className="bg-gray-50 border border-gray-100 p-5 rounded-2xl flex items-start gap-4">
-                        <div className="w-10 h-10 rounded-xl bg-cyan-50 flex items-center justify-center shrink-0">
-                          <Mail className="text-cyan-600" size={20} />
+                      <div className="bg-gray-50 dark:bg-slate-800 border border-gray-100 dark:border-slate-700 p-5 rounded-2xl flex items-start gap-4">
+                        <div className="w-10 h-10 rounded-xl bg-cyan-50 dark:bg-cyan-900/30 flex items-center justify-center shrink-0">
+                          <Mail className="text-cyan-600 dark:text-cyan-400" size={20} />
                         </div>
                         <div>
                           <span className="block text-xs font-semibold text-gray-400 uppercase">Email Address</span>
-                          <span className="font-semibold text-gray-800 text-sm mt-0.5 block">{session.user?.email}</span>
+                          <span className="font-semibold text-gray-800 dark:text-slate-200 text-sm mt-0.5 block">{session.user?.email}</span>
                         </div>
                       </div>
 
@@ -535,17 +535,17 @@ import ConfirmDeleteModal from "@/components/ConfirmDeleteModal";
       {/* MODAL: RESCHEDULE/EDIT BOOKING */}
       {editBooking && (
         <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/40 backdrop-blur-md">
-          <div className="relative w-full max-w-lg overflow-hidden bg-white shadow-2xl rounded-3xl border border-gray-100 animate-scale-up">
+          <div className="relative w-full max-w-lg overflow-hidden bg-white dark:bg-slate-900 shadow-2xl rounded-3xl border border-gray-100 dark:border-slate-800 animate-scale-up">
             
             {/* Header */}
-            <div className="flex items-center justify-between border-b border-gray-100 px-6 py-4 bg-linear-to-r from-cyan-50 to-blue-50">
+            <div className="flex items-center justify-between border-b border-gray-100 dark:border-slate-800 px-6 py-4 bg-linear-to-r from-cyan-50 to-blue-50 dark:from-slate-800 dark:to-slate-900">
               <div>
-                <h3 className="text-xl font-bold text-gray-900">Reschedule Appointment</h3>
-                <p className="text-sm text-gray-500 mt-0.5">Edit details for booking</p>
+                <h3 className="text-xl font-bold text-gray-900 dark:text-white">Reschedule Appointment</h3>
+                <p className="text-sm text-gray-500 dark:text-slate-400 mt-0.5">Edit details for booking</p>
               </div>
               <button
                 onClick={() => setEditBooking(null)}
-                className="p-2 text-gray-400 hover:text-gray-600 rounded-full hover:bg-gray-100 transition cursor-pointer"
+                className="p-2 text-gray-400 hover:text-gray-600 dark:hover:text-slate-200 rounded-full hover:bg-gray-100 dark:hover:bg-slate-800 transition cursor-pointer"
               >
                 <X size={20} />
               </button>
@@ -555,28 +555,28 @@ import ConfirmDeleteModal from "@/components/ConfirmDeleteModal";
             <form onSubmit={handleUpdateBooking} className="p-6 space-y-4">
               
               {/* Readonly Info */}
-              <div className="grid grid-cols-2 gap-4 p-4 bg-gray-50 rounded-2xl border border-gray-100 text-sm">
+              <div className="grid grid-cols-2 gap-4 p-4 bg-gray-50 dark:bg-slate-800 rounded-2xl border border-gray-100 dark:border-slate-700 text-sm">
                 <div>
                   <span className="block text-xs font-semibold text-gray-400 uppercase">Doctor (Read Only)</span>
-                  <span className="font-semibold text-gray-700">{editBooking.doctorName}</span>
+                  <span className="font-semibold text-gray-700 dark:text-slate-200">{editBooking.doctorName}</span>
                 </div>
                 <div>
                   <span className="block text-xs font-semibold text-gray-400 uppercase">Your Email (Read Only)</span>
-                  <span className="font-semibold text-gray-700 truncate block">{editBooking.userEmail}</span>
+                  <span className="font-semibold text-gray-700 dark:text-slate-200 truncate block">{editBooking.userEmail}</span>
                 </div>
               </div>
 
               {/* Patient Name */}
               <div className="space-y-1.5">
-                <label className="block text-sm font-semibold text-gray-700">Patient Name</label>
+                <label className="block text-sm font-semibold text-gray-700 dark:text-slate-300">Patient Name</label>
                 <div className="relative">
-                  <User size={18} className="absolute left-4 top-3 text-gray-400" />
+                  <User size={18} className="absolute left-4 top-3 text-gray-400 dark:text-slate-500" />
                   <input
                     type="text"
                     name="patientName"
                     value={bookingFormData.patientName}
                     onChange={handleBookingFormChange}
-                    className="w-full pl-11 pr-4 py-2.5 border border-gray-200 rounded-xl focus:outline-hidden focus:ring-2 focus:ring-cyan-500"
+                    className="w-full pl-11 pr-4 py-2.5 border border-gray-200 dark:border-slate-700 rounded-xl focus:outline-hidden focus:ring-2 focus:ring-cyan-500 bg-white dark:bg-slate-800 text-gray-900 dark:text-white"
                     required
                   />
                 </div>
@@ -585,12 +585,12 @@ import ConfirmDeleteModal from "@/components/ConfirmDeleteModal";
               {/* Gender & Phone */}
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div className="space-y-1.5">
-                  <label className="block text-sm font-semibold text-gray-700">Gender</label>
+                  <label className="block text-sm font-semibold text-gray-700 dark:text-slate-300">Gender</label>
                   <select
                     name="gender"
                     value={bookingFormData.gender}
                     onChange={handleBookingFormChange}
-                    className="w-full px-4 py-2.5 border border-gray-200 rounded-xl focus:outline-hidden focus:ring-2 focus:ring-cyan-500 bg-white"
+                    className="w-full px-4 py-2.5 border border-gray-200 dark:border-slate-700 rounded-xl focus:outline-hidden focus:ring-2 focus:ring-cyan-500 bg-white dark:bg-slate-800 text-gray-900 dark:text-white"
                     required
                   >
                     <option value="Male">Male</option>
@@ -600,15 +600,15 @@ import ConfirmDeleteModal from "@/components/ConfirmDeleteModal";
                 </div>
 
                 <div className="space-y-1.5">
-                  <label className="block text-sm font-semibold text-gray-700">Phone Number</label>
+                  <label className="block text-sm font-semibold text-gray-700 dark:text-slate-300">Phone Number</label>
                   <div className="relative">
-                    <Phone size={18} className="absolute left-4 top-3 text-gray-400" />
+                    <Phone size={18} className="absolute left-4 top-3 text-gray-400 dark:text-slate-500" />
                     <input
                       type="tel"
                       name="phone"
                       value={bookingFormData.phone}
                       onChange={handleBookingFormChange}
-                      className="w-full pl-11 pr-4 py-2.5 border border-gray-200 rounded-xl focus:outline-hidden focus:ring-2 focus:ring-cyan-500"
+                      className="w-full pl-11 pr-4 py-2.5 border border-gray-200 dark:border-slate-700 rounded-xl focus:outline-hidden focus:ring-2 focus:ring-cyan-500 bg-white dark:bg-slate-800 text-gray-900 dark:text-white"
                       required
                     />
                   </div>
@@ -618,29 +618,29 @@ import ConfirmDeleteModal from "@/components/ConfirmDeleteModal";
               {/* Date & Time */}
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div className="space-y-1.5">
-                  <label className="block text-sm font-semibold text-gray-700">Preferred Date</label>
+                  <label className="block text-sm font-semibold text-gray-700 dark:text-slate-300">Preferred Date</label>
                   <div className="relative">
-                    <Calendar size={18} className="absolute left-4 top-3.5 text-gray-400" />
+                    <Calendar size={18} className="absolute left-4 top-3.5 text-gray-400 dark:text-slate-500" />
                     <input
                       type="date"
                       name="appointmentDate"
                       value={bookingFormData.appointmentDate}
                       onChange={handleBookingFormChange}
-                      className="w-full pl-11 pr-4 py-2.5 border border-gray-200 rounded-xl focus:outline-hidden focus:ring-2 focus:ring-cyan-500 text-gray-700 bg-white"
+                      className="w-full pl-11 pr-4 py-2.5 border border-gray-200 dark:border-slate-700 rounded-xl focus:outline-hidden focus:ring-2 focus:ring-cyan-500 text-gray-700 dark:text-slate-300 bg-white dark:bg-slate-800"
                       required
                     />
                   </div>
                 </div>
 
                 <div className="space-y-1.5">
-                  <label className="block text-sm font-semibold text-gray-700">Preferred Time Slot</label>
+                  <label className="block text-sm font-semibold text-gray-700 dark:text-slate-300">Preferred Time Slot</label>
                   <div className="relative">
-                    <Clock size={18} className="absolute left-4 top-3.5 text-gray-400" />
+                    <Clock size={18} className="absolute left-4 top-3.5 text-gray-400 dark:text-slate-500" />
                     <select
                       name="appointmentTime"
                       value={bookingFormData.appointmentTime}
                       onChange={handleBookingFormChange}
-                      className="w-full pl-11 pr-4 py-2.5 border border-gray-200 rounded-xl focus:outline-hidden focus:ring-2 focus:ring-cyan-500 text-gray-700 bg-white"
+                      className="w-full pl-11 pr-4 py-2.5 border border-gray-200 dark:border-slate-700 rounded-xl focus:outline-hidden focus:ring-2 focus:ring-cyan-500 text-gray-700 dark:text-slate-300 bg-white dark:bg-slate-800"
                       required
                     >
                       <option value="">Select Time Slot</option>
@@ -681,17 +681,17 @@ import ConfirmDeleteModal from "@/components/ConfirmDeleteModal";
       {/* MODAL: UPDATE USER PROFILE */}
       {showProfileModal && (
         <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/40 backdrop-blur-md">
-          <div className="relative w-full max-w-md overflow-hidden bg-white shadow-2xl rounded-3xl border border-gray-100 animate-scale-up">
+          <div className="relative w-full max-md overflow-hidden bg-white dark:bg-slate-900 shadow-2xl rounded-3xl border border-gray-100 dark:border-slate-800 animate-scale-up">
             
             {/* Header */}
-            <div className="flex items-center justify-between border-b border-gray-100 px-6 py-4 bg-linear-to-r from-cyan-50 to-blue-50">
+            <div className="flex items-center justify-between border-b border-gray-100 dark:border-slate-800 px-6 py-4 bg-linear-to-r from-cyan-50 to-blue-50 dark:from-slate-800 dark:to-slate-900">
               <div>
-                <h3 className="text-xl font-bold text-gray-900">Update Profile Details</h3>
-                <p className="text-sm text-gray-500 mt-0.5">Modify your membership details</p>
+                <h3 className="text-xl font-bold text-gray-900 dark:text-white">Update Profile Details</h3>
+                <p className="text-sm text-gray-500 dark:text-slate-400 mt-0.5">Modify your membership details</p>
               </div>
               <button
                 onClick={() => setShowProfileModal(false)}
-                className="p-2 text-gray-400 hover:text-gray-600 rounded-full hover:bg-gray-100 transition cursor-pointer"
+                className="p-2 text-gray-400 hover:text-gray-600 dark:hover:text-slate-200 rounded-full hover:bg-gray-100 dark:hover:bg-slate-800 transition cursor-pointer"
               >
                 <X size={20} />
               </button>
@@ -702,14 +702,14 @@ import ConfirmDeleteModal from "@/components/ConfirmDeleteModal";
               
               {/* Display Name */}
               <div className="space-y-1.5">
-                <label className="block text-sm font-semibold text-gray-700">Display Name</label>
+                <label className="block text-sm font-semibold text-gray-700 dark:text-slate-300">Display Name</label>
                 <div className="relative">
-                  <User size={18} className="absolute left-4 top-3 text-gray-400" />
+                  <User size={18} className="absolute left-4 top-3 text-gray-400 dark:text-slate-500" />
                   <input
                     type="text"
                     value={profileFormData.name}
                     onChange={(e) => setProfileFormData(prev => ({ ...prev, name: e.target.value }))}
-                    className="w-full pl-11 pr-4 py-2.5 border border-gray-200 rounded-xl focus:outline-hidden focus:ring-2 focus:ring-cyan-500"
+                    className="w-full pl-11 pr-4 py-2.5 border border-gray-200 dark:border-slate-700 rounded-xl focus:outline-hidden focus:ring-2 focus:ring-cyan-500 bg-white dark:bg-slate-800 text-gray-900 dark:text-white"
                     placeholder="E.g., Siyam Islam"
                     required
                   />
@@ -718,14 +718,14 @@ import ConfirmDeleteModal from "@/components/ConfirmDeleteModal";
 
               {/* Profile Image URL */}
               <div className="space-y-1.5">
-                <label className="block text-sm font-semibold text-gray-700">Profile Photo URL</label>
+                <label className="block text-sm font-semibold text-gray-700 dark:text-slate-300">Profile Photo URL</label>
                 <div className="relative">
-                  <ImageIcon size={18} className="absolute left-4 top-3 text-gray-400" />
+                  <ImageIcon size={18} className="absolute left-4 top-3 text-gray-400 dark:text-slate-500" />
                   <input
                     type="url"
                     value={profileFormData.image}
                     onChange={(e) => setProfileFormData(prev => ({ ...prev, image: e.target.value }))}
-                    className="w-full pl-11 pr-4 py-2.5 border border-gray-200 rounded-xl focus:outline-hidden focus:ring-2 focus:ring-cyan-500"
+                    className="w-full pl-11 pr-4 py-2.5 border border-gray-200 dark:border-slate-700 rounded-xl focus:outline-hidden focus:ring-2 focus:ring-cyan-500 bg-white dark:bg-slate-800 text-gray-900 dark:text-white"
                     placeholder="https://example.com/image.jpg"
                     required
                   />

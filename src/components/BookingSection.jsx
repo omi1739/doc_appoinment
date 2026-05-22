@@ -94,17 +94,17 @@ export default function BookingSection({ appointmentId, doctorName, fee }) {
 
       {isOpen && (
         <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/40 backdrop-blur-md animate-fade-in">
-          <div className="relative w-full max-w-lg overflow-hidden bg-white/95 border border-gray-100 shadow-2xl rounded-3xl animate-scale-up">
+          <div className="relative w-full max-w-lg overflow-hidden bg-white/95 dark:bg-slate-900/95 border border-gray-100 dark:border-slate-800 shadow-2xl rounded-3xl animate-scale-up">
             
             {/* Header */}
-            <div className="flex items-center justify-between border-b border-gray-100 px-6 py-4 bg-linear-to-r from-cyan-50 to-blue-50">
+            <div className="flex items-center justify-between border-b border-gray-100 dark:border-slate-800 px-6 py-4 bg-linear-to-r from-cyan-50 to-blue-50 dark:from-slate-800 dark:to-slate-900">
               <div>
-                <h3 className="text-xl font-bold text-gray-900">Book Appointment</h3>
-                <p className="text-sm text-gray-500 mt-0.5">With {doctorName}</p>
+                <h3 className="text-xl font-bold text-gray-900 dark:text-white">Book Appointment</h3>
+                <p className="text-sm text-gray-500 dark:text-slate-400 mt-0.5">With {doctorName}</p>
               </div>
               <button
                 onClick={() => setIsOpen(false)}
-                className="p-2 text-gray-400 hover:text-gray-600 rounded-full hover:bg-gray-100 transition-all cursor-pointer"
+                className="p-2 text-gray-400 dark:text-slate-500 hover:text-gray-600 dark:hover:text-slate-200 rounded-full hover:bg-gray-100 dark:hover:bg-slate-800 transition-all cursor-pointer"
               >
                 <X size={20} />
               </button>
@@ -114,33 +114,33 @@ export default function BookingSection({ appointmentId, doctorName, fee }) {
             <form onSubmit={handleBook} className="p-6 space-y-4">
               
               {/* Doctor and User Readonly */}
-              <div className="grid grid-cols-2 gap-4 p-4 bg-gray-50 rounded-2xl border border-gray-100 text-sm">
+              <div className="grid grid-cols-2 gap-4 p-4 bg-gray-50 dark:bg-slate-800 rounded-2xl border border-gray-100 dark:border-slate-700 text-sm">
                 <div>
                   <span className="block text-xs font-semibold text-gray-400 uppercase">Doctor</span>
-                  <span className="font-semibold text-gray-700">{doctorName}</span>
+                  <span className="font-semibold text-gray-700 dark:text-slate-200">{doctorName}</span>
                 </div>
                 <div>
                   <span className="block text-xs font-semibold text-gray-400 uppercase">Your Email</span>
-                  <span className="font-semibold text-gray-700 truncate block">{session?.user?.email || "N/A"}</span>
+                  <span className="font-semibold text-gray-700 dark:text-slate-200 truncate block">{session?.user?.email || "N/A"}</span>
                 </div>
-                <div className="col-span-2 pt-2 border-t border-gray-200/60 flex justify-between items-center">
-                  <span className="text-gray-500 font-medium">Consultation Fee:</span>
-                  <span className="text-lg font-bold text-cyan-600">৳{fee}</span>
+                <div className="col-span-2 pt-2 border-t border-gray-200/60 dark:border-slate-700 flex justify-between items-center">
+                  <span className="text-gray-500 dark:text-slate-400 font-medium">Consultation Fee:</span>
+                  <span className="text-lg font-bold text-cyan-600 dark:text-cyan-400">৳{fee}</span>
                 </div>
               </div>
 
               {/* Patient Name */}
               <div className="space-y-1.5">
-                <label className="block text-sm font-semibold text-gray-700">Patient Name</label>
+                <label className="block text-sm font-semibold text-gray-700 dark:text-slate-300">Patient Name</label>
                 <div className="relative">
-                  <User size={18} className="absolute left-4 top-3 text-gray-400" />
+                  <User size={18} className="absolute left-4 top-3 text-gray-400 dark:text-slate-500" />
                   <input
                     type="text"
                     name="patientName"
                     value={formData.patientName}
                     onChange={handleChange}
                     placeholder="Enter patient full name"
-                    className="w-full pl-11 pr-4 py-2.5 border border-gray-200 rounded-xl focus:outline-hidden focus:ring-2 focus:ring-cyan-500 bg-white"
+                    className="w-full pl-11 pr-4 py-2.5 border border-gray-200 dark:border-slate-700 rounded-xl focus:outline-hidden focus:ring-2 focus:ring-cyan-500 bg-white dark:bg-slate-800 text-gray-900 dark:text-white transition-colors"
                     required
                   />
                 </div>
@@ -149,12 +149,12 @@ export default function BookingSection({ appointmentId, doctorName, fee }) {
               {/* Gender & Phone */}
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div className="space-y-1.5">
-                  <label className="block text-sm font-semibold text-gray-700">Gender</label>
+                  <label className="block text-sm font-semibold text-gray-700 dark:text-slate-300">Gender</label>
                   <select
                     name="gender"
                     value={formData.gender}
                     onChange={handleChange}
-                    className="w-full px-4 py-2.5 border border-gray-200 rounded-xl focus:outline-hidden focus:ring-2 focus:ring-cyan-500 bg-white"
+                    className="w-full px-4 py-2.5 border border-gray-200 dark:border-slate-700 rounded-xl focus:outline-hidden focus:ring-2 focus:ring-cyan-500 bg-white dark:bg-slate-800 text-gray-900 dark:text-white transition-colors"
                     required
                   >
                     <option value="Male">Male</option>
@@ -164,16 +164,16 @@ export default function BookingSection({ appointmentId, doctorName, fee }) {
                 </div>
 
                 <div className="space-y-1.5">
-                  <label className="block text-sm font-semibold text-gray-700">Phone Number</label>
+                  <label className="block text-sm font-semibold text-gray-700 dark:text-slate-300">Phone Number</label>
                   <div className="relative">
-                    <Phone size={18} className="absolute left-4 top-3 text-gray-400" />
+                    <Phone size={18} className="absolute left-4 top-3 text-gray-400 dark:text-slate-500" />
                     <input
                       type="tel"
                       name="phone"
                       value={formData.phone}
                       onChange={handleChange}
                       placeholder="017XXXXXXXX"
-                      className="w-full pl-11 pr-4 py-2.5 border border-gray-200 rounded-xl focus:outline-hidden focus:ring-2 focus:ring-cyan-500 bg-white"
+                      className="w-full pl-11 pr-4 py-2.5 border border-gray-200 dark:border-slate-700 rounded-xl focus:outline-hidden focus:ring-2 focus:ring-cyan-500 bg-white dark:bg-slate-800 text-gray-900 dark:text-white transition-colors"
                       required
                     />
                   </div>
@@ -183,29 +183,29 @@ export default function BookingSection({ appointmentId, doctorName, fee }) {
               {/* Date & Time */}
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div className="space-y-1.5">
-                  <label className="block text-sm font-semibold text-gray-700">Preferred Date</label>
+                  <label className="block text-sm font-semibold text-gray-700 dark:text-slate-300">Preferred Date</label>
                   <div className="relative">
-                    <Calendar size={18} className="absolute left-4 top-3.5 text-gray-400" />
+                    <Calendar size={18} className="absolute left-4 top-3.5 text-gray-400 dark:text-slate-500" />
                     <input
                       type="date"
                       name="appointmentDate"
                       value={formData.appointmentDate}
                       onChange={handleChange}
-                      className="w-full pl-11 pr-4 py-2.5 border border-gray-200 rounded-xl focus:outline-hidden focus:ring-2 focus:ring-cyan-500 bg-white text-gray-700"
+                      className="w-full pl-11 pr-4 py-2.5 border border-gray-200 dark:border-slate-700 rounded-xl focus:outline-hidden focus:ring-2 focus:ring-cyan-500 bg-white dark:bg-slate-800 text-gray-900 dark:text-white transition-colors"
                       required
                     />
                   </div>
                 </div>
 
                 <div className="space-y-1.5">
-                  <label className="block text-sm font-semibold text-gray-700">Preferred Time Slot</label>
+                  <label className="block text-sm font-semibold text-gray-700 dark:text-slate-300">Preferred Time Slot</label>
                   <div className="relative">
-                    <Clock size={18} className="absolute left-4 top-3.5 text-gray-400" />
+                    <Clock size={18} className="absolute left-4 top-3.5 text-gray-400 dark:text-slate-500" />
                     <select
                       name="appointmentTime"
                       value={formData.appointmentTime}
                       onChange={handleChange}
-                      className="w-full pl-11 pr-4 py-2.5 border border-gray-200 rounded-xl focus:outline-hidden focus:ring-2 focus:ring-cyan-500 bg-white text-gray-700"
+                      className="w-full pl-11 pr-4 py-2.5 border border-gray-200 dark:border-slate-700 rounded-xl focus:outline-hidden focus:ring-2 focus:ring-cyan-500 bg-white dark:bg-slate-800 text-gray-900 dark:text-white transition-colors"
                       required
                     >
                       <option value="">Select Time Slot</option>
