@@ -68,9 +68,15 @@ const InputField = ({
 const LoginPage = () => {
 
     const handleGoogleLogin = async () => {
-       await authClient.signIn.social({
-       provider: "google",
-  });
+      try {
+        await authClient.signIn.social({
+          provider: "google",
+          callbackURL: "/",
+        });
+      } catch (error) {
+        console.error("Google Login Error:", error);
+        toast.error("Google Login Failed");
+      }
     }
 
 const router = useRouter();

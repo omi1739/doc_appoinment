@@ -60,10 +60,18 @@ const InputField = ({
 const RegisterPage = () => {
 
     const handleGoogleRegister = async () => {
-         await authClient.signIn.social({
-         provider: "google",
-    });
+      try {
+        await authClient.signIn.social({
+          provider: "google",
+          callbackURL: "/",
+        });
+      } catch (error) {
+        console.error("Google Register Error:", error);
+        toast.error("Google Registration Failed");
       }
+    }
+
+      
 
 
   const router = useRouter();
