@@ -6,6 +6,7 @@ import React, { useState } from "react";
 import { signOut, useSession } from "@/lib/auth-client";
 import { useRouter } from "next/navigation";
 import { LogOut, Menu, X } from "lucide-react";
+import { ThemeToggle } from "./ThemeToggle";
 
 const Navbar = () => {
   const router = useRouter();
@@ -21,17 +22,18 @@ const Navbar = () => {
   };
 
   return (
-    <div className="sticky top-0 z-50 bg-white shadow-md">
-      
-      <nav className="max-w-7xl mx-auto px-4  flex justify-between items-center">
+    <div className="sticky top-0 z-50 bg-white dark:bg-slate-900/80 backdrop-blur-md border-b border-gray-100 dark:border-slate-800 shadow-sm transition-colors duration-300">
+
+      <nav className="max-w-7xl mx-auto px-4 flex justify-between items-center h-16">
 
         {/* Logo */}
-        <Link href="/">
+        <Link href="/" className="flex items-center">
           <Image
             src="/logo.png"
-            width={100}
-            height={20}
+            width={120}
+            height={24}
             alt="Doctor Appointment Logo"
+            className="dark:invert brightness-110"
           />
         </Link>
 
@@ -40,7 +42,7 @@ const Navbar = () => {
           <li>
             <Link
               href="/"
-              className="text-gray-700 hover:text-cyan-600 font-medium transition"
+              className="text-gray-600 dark:text-slate-300 hover:text-cyan-600 dark:hover:text-cyan-400 font-medium transition-colors"
             >
               Home
             </Link>
@@ -49,7 +51,7 @@ const Navbar = () => {
           <li>
             <Link
               href="/appointments"
-              className="text-gray-700 hover:text-cyan-600 font-medium transition"
+              className="text-gray-600 dark:text-slate-300 hover:text-cyan-600 dark:hover:text-cyan-400 font-medium transition-colors"
             >
               All Appointments
             </Link>
@@ -58,82 +60,84 @@ const Navbar = () => {
           <li>
             <Link
               href="/dashboard"
-              className="text-gray-700 hover:text-cyan-600 font-medium transition"
+              className="text-gray-600 dark:text-slate-300 hover:text-cyan-600 dark:hover:text-cyan-400 font-medium transition-colors"
             >
               Dashboard
             </Link>
           </li>
         </ul>
 
-        {/* Desktop Auth */}
-        <div className="hidden md:flex items-center gap-3">
-          
-          {isPending ? (
-            <div className="w-8 h-8 rounded-full bg-gray-200 animate-pulse"></div>
-          ) : session ? (
-            <>
-              <div className="flex items-center gap-2">
+        {/* Desktop Actions */}
+        <div className="hidden md:flex items-center gap-4">
 
+          <ThemeToggle />
+
+          {isPending ? (
+            <div className="w-8 h-8 rounded-full bg-gray-200 dark:bg-slate-800 animate-pulse"></div>
+          ) : session ? (
+            <div className="flex items-center gap-3">
+              <div className="flex items-center gap-2">
                 <Image
                   src={session.user?.image || "/default-avatar.png"}
                   alt="Profile"
                   width={36}
                   height={36}
-                  className="rounded-full"
+                  className="rounded-full border border-gray-200 dark:border-slate-700"
                 />
-
-                <span className="text-gray-700 font-medium">
+                <span className="text-gray-700 dark:text-slate-200 font-medium">
                   {session.user?.name || "User"}
                 </span>
               </div>
 
               <button
                 onClick={handleLogout}
-                className="flex items-center gap-2 px-4 py-2 bg-red-600 text-white rounded-lg hover:bg-red-700 transition font-semibold"
+                className="flex items-center gap-2 px-4 py-2 bg-red-600 hover:bg-red-700 text-white rounded-lg transition-all font-semibold shadow-sm"
               >
                 <LogOut size={18} />
                 Logout
               </button>
-            </>
+            </div>
           ) : (
-            <>
+            <div className="flex items-center gap-2">
               <Link
                 href="/login"
-                className="px-4 py-2 text-cyan-600 hover:text-cyan-700 font-semibold transition"
+                className="px-4 py-2 text-cyan-600 dark:text-cyan-400 hover:text-cyan-700 dark:hover:text-cyan-300 font-semibold transition-colors"
               >
                 Login
               </Link>
 
               <Link
                 href="/register"
-                className="px-4 py-2 bg-cyan-600 text-white rounded-lg hover:bg-cyan-700 transition font-semibold"
+                className="px-4 py-2 bg-cyan-600 hover:bg-cyan-700 text-white rounded-lg transition-all font-semibold shadow-sm shadow-cyan-500/20"
               >
                 Register
               </Link>
-            </>
+            </div>
           )}
         </div>
 
-        {/* Mobile Toggle */}
-        <button
-          onClick={() => setIsOpen(!isOpen)}
-          className="md:hidden text-gray-700"
-        >
-          {isOpen ? <X size={24} /> : <Menu size={24} />}
-        </button>
+        {/* Mobile Actions */}
+        <div className="flex items-center gap-2 md:hidden">
+          <ThemeToggle />
+          <button
+            onClick={() => setIsOpen(!isOpen)}
+            className="text-gray-700 dark:text-slate-300 p-2"
+          >
+            {isOpen ? <X size={24} /> : <Menu size={24} />}
+          </button>
+        </div>
       </nav>
 
       {/* Mobile Menu */}
       {isOpen && (
-        <div className="md:hidden bg-white border-t border-gray-200">
+        <div className="md:hidden bg-white dark:bg-slate-900 border-t border-gray-100 dark:border-slate-800 animate-in fade-in slide-in-from-top-4 duration-300">
 
-          <ul className="flex flex-col gap-2 p-4">
-
+          <ul className="flex flex-col gap-1 p-4">
             <li>
               <Link
                 href="/"
                 onClick={() => setIsOpen(false)}
-                className="block py-2 text-gray-700 hover:text-cyan-600 font-medium transition"
+                className="block py-3 px-4 text-gray-700 dark:text-slate-300 hover:bg-gray-50 dark:hover:bg-slate-800 rounded-lg font-medium transition-colors"
               >
                 Home
               </Link>
@@ -143,7 +147,7 @@ const Navbar = () => {
               <Link
                 href="/appointments"
                 onClick={() => setIsOpen(false)}
-                className="block py-2 text-gray-700 hover:text-cyan-600 font-medium transition"
+                className="block py-3 px-4 text-gray-700 dark:text-slate-300 hover:bg-gray-50 dark:hover:bg-slate-800 rounded-lg font-medium transition-colors"
               >
                 All Appointments
               </Link>
@@ -153,7 +157,7 @@ const Navbar = () => {
               <Link
                 href="/dashboard"
                 onClick={() => setIsOpen(false)}
-                className="block py-2 text-gray-700 hover:text-cyan-600 font-medium transition"
+                className="block py-3 px-4 text-gray-700 dark:text-slate-300 hover:bg-gray-50 dark:hover:bg-slate-800 rounded-lg font-medium transition-colors"
               >
                 Dashboard
               </Link>
@@ -161,23 +165,21 @@ const Navbar = () => {
           </ul>
 
           {/* Mobile Auth */}
-          <div className="border-t border-gray-200 p-4 space-y-2">
+          <div className="border-t border-gray-100 dark:border-slate-800 p-4 space-y-3">
 
             {isPending ? (
-              <div className="w-8 h-8 rounded-full bg-gray-200 animate-pulse"></div>
+              <div className="w-8 h-8 rounded-full bg-gray-200 dark:bg-slate-800 animate-pulse"></div>
             ) : session ? (
               <>
-                <div className="flex items-center gap-3 py-2">
-
+                <div className="flex items-center gap-3 px-4 py-2">
                   <Image
                     src={session.user?.image || "/default-avatar.png"}
                     alt="Profile"
-                    width={36}
-                    height={36}
-                    className="rounded-full"
+                    width={40}
+                    height={40}
+                    className="rounded-full border border-gray-200 dark:border-slate-700"
                   />
-
-                  <p className="text-gray-700 font-medium">
+                  <p className="text-gray-700 dark:text-slate-200 font-semibold">
                     {session.user?.name || "User"}
                   </p>
                 </div>
@@ -187,18 +189,18 @@ const Navbar = () => {
                     handleLogout();
                     setIsOpen(false);
                   }}
-                  className="w-full flex items-center justify-center gap-2 px-4 py-2 bg-red-600 text-white rounded-lg hover:bg-red-700 transition font-semibold"
+                  className="w-full flex items-center justify-center gap-2 px-4 py-3 bg-red-600 text-white rounded-lg hover:bg-red-700 transition font-semibold"
                 >
                   <LogOut size={18} />
                   Logout
                 </button>
               </>
             ) : (
-              <>
+              <div className="grid grid-cols-2 gap-3">
                 <Link
                   href="/login"
                   onClick={() => setIsOpen(false)}
-                  className="block w-full text-center px-4 py-2 text-cyan-600 border border-cyan-600 rounded-lg hover:text-cyan-700 font-semibold transition"
+                  className="flex items-center justify-center px-4 py-3 text-cyan-600 dark:text-cyan-400 border border-cyan-600 dark:border-cyan-400 rounded-lg hover:bg-cyan-50 dark:hover:bg-cyan-950 font-semibold transition-colors"
                 >
                   Login
                 </Link>
@@ -206,11 +208,11 @@ const Navbar = () => {
                 <Link
                   href="/register"
                   onClick={() => setIsOpen(false)}
-                  className="block w-full text-center px-4 py-2 bg-cyan-600 text-white rounded-lg hover:bg-cyan-700 transition font-semibold"
+                  className="flex items-center justify-center px-4 py-3 bg-cyan-600 text-white rounded-lg hover:bg-cyan-700 font-semibold transition-colors"
                 >
                   Register
                 </Link>
-              </>
+              </div>
             )}
           </div>
         </div>
