@@ -1,7 +1,6 @@
 import React from "react";
 import Image from "next/image";
 import { MapPin, Briefcase, Building2, Clock, Star } from "lucide-react";
-import { auth } from "@/lib/auth";
 import { headers } from "next/headers";
 import BookingSection from "@/components/BookingSection";
 
