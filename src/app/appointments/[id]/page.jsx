@@ -2,37 +2,41 @@ import React from "react";
 import Image from "next/image";
 import { MapPin, Briefcase, Building2, Clock, Star } from "lucide-react";
 import { headers } from "next/headers";
+import { auth } from "@/lib/auth";
 import BookingSection from "@/components/BookingSection";
 
 const fetchSingleAppointment = async (id, token) => {
-  const res = await fetch(
-    `${process.env.NEXT_PUBLIC_API_URL}/appointments/${id}`,{
-      headers:{
-        authorization: `Bearer ${token}` || ""
+  try {
+    const res = await fetch(
+      `${process.env.NEXT_PUBLIC_API_URL}/appointments/${id}`,{
+        headers:{
+          authorization: `Bearer ${token}` || ""
+        }
       }
+    );
+    if (!res.ok) {
+      console.error(`Backend returned ${res.status} for appointment ${id}`);
+      return {};
     }
-  );
-  const data = await res.json();
-  return data || {};
+    const data = await res.json();
+    return data || {};
+  } catch (error) {
+    console.error("Failed to fetch appointment:", error);
+    return {};
+  }
 };
 
 const AppointmentDetails = async ({ params }) => {
   const { id } = await params;
 
-  const baseURL = process.env.BETTER_AUTH_URL || process.env.NEXT_PUBLIC_BETTER_AUTH_URL || (process.env.VERCEL_URL ? `https://${process.env.VERCEL_URL}` : "https://doc-appoinment-coral.vercel.app");
   const headersList = await headers();
-  const cookie = headersList.get("cookie") || "";
 
   let token = null;
   try {
-    const tokenRes = await fetch(`${baseURL}/api/auth/token`, {
-      headers: { cookie },
-      cache: "no-store"
+    const result = await auth.api.getToken({
+      headers: headersList
     });
-    if (tokenRes.ok) {
-      const data = await tokenRes.json();
-      token = data?.token;
-    }
+    token = result?.token;
   } catch (e) {
     console.error("Failed to fetch token:", e);
   }

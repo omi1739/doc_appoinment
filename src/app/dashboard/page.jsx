@@ -105,9 +105,7 @@ import ConfirmDeleteModal from "@/components/ConfirmDeleteModal";
 
   useEffect(() => {
     if (session) {
-      Promise.resolve().then(() => {
-        fetchBookings();
-      });
+      fetchBookings();
     }
   }, [session, fetchBookings]);
 
