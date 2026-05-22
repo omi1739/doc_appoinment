@@ -2,12 +2,16 @@ import { betterAuth } from "better-auth";
 import { MongoClient } from "mongodb";
 import { mongodbAdapter } from "@better-auth/mongo-adapter";
 import { jwt } from "better-auth/plugins";
+import { nextCookies } from "better-auth/next-js";
 
 let db = null;
 
 if (process.env.MONGODB_URI) {
   if (!global._mongoClient) {
-    global._mongoClient = new MongoClient(process.env.MONGODB_URI);
+    global._mongoClient = new MongoClient(process.env.MONGODB_URI, {
+      serverSelectionTimeoutMS: 10000,
+      connectTimeoutMS: 10000,
+    });
   }
   db = global._mongoClient.db('docAppoint');
 }
@@ -44,6 +48,7 @@ export const auth = betterAuth({
     updateAge: 60 * 60 * 24, // 1 day
   },
   plugins: [
-    jwt(), 
+    jwt(),
+    nextCookies(),
   ]
 });
