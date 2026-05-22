@@ -79,6 +79,20 @@ const RegisterPage = () => {
     const formData = new FormData(e.currentTarget);
     const registerData = Object.fromEntries(formData.entries());
 
+    const password = registerData.password;
+    if (password.length < 6) {
+      toast.error("Password must be at least 6 characters long.");
+      return;
+    }
+    if (!/[A-Z]/.test(password)) {
+      toast.error("Password must contain at least 1 uppercase letter.");
+      return;
+    }
+    if (!/[a-z]/.test(password)) {
+      toast.error("Password must contain at least 1 lowercase letter.");
+      return;
+    }
+
     const { data, error } = await signUp.email({
       ...registerData,
     });
