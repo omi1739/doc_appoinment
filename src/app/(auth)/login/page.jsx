@@ -5,7 +5,7 @@ import toast from "react-hot-toast";
 import Link from "next/link";
 import { Mail, Lock, Eye, EyeOff } from "lucide-react";
 import Image from "next/image";
-import { signIn } from "@/lib/auth-client";
+import { authClient, signIn } from "@/lib/auth-client";
 import { useRouter } from "next/navigation";
 
 const inputStyle =
@@ -67,8 +67,10 @@ const InputField = ({
 
 const LoginPage = () => {
 
-    const handleGoogleLogin = () => {
-
+    const handleGoogleLogin = async () => {
+       await authClient.signIn.social({
+       provider: "google",
+  });
     }
 
 const router = useRouter();
@@ -168,8 +170,9 @@ const router = useRouter();
 
           {/* Google Button */}
           <button
+            onClick={handleGoogleLogin}
             type="button"
-            className="w-full flex items-center justify-center gap-2 rounded-xl border border-gray-300 px-4 py-3 hover:bg-gray-100 transition"
+            className="w-full flex items-center cursor-pointer justify-center gap-2 rounded-xl border border-gray-300 px-4 py-3 hover:bg-gray-100 transition"
           >
             <Image
               src="/googleicon.png"

@@ -12,7 +12,7 @@ import {
 } from "lucide-react";
 import Image from "next/image";
 import toast from "react-hot-toast";
-import { signUp } from "@/lib/auth-client";
+import { authClient, signUp } from "@/lib/auth-client";
 import { useRouter } from "next/navigation";
 
 const inputStyle =
@@ -58,6 +58,14 @@ const InputField = ({
 );
 
 const RegisterPage = () => {
+
+    const handleGoogleRegister = async () => {
+         await authClient.signIn.social({
+         provider: "google",
+    });
+      }
+
+
   const router = useRouter();
 
   const [showPassword, setShowPassword] = useState(false);
@@ -142,8 +150,9 @@ const RegisterPage = () => {
 
           {/* Google Button */}
           <button
+            onClick={handleGoogleRegister}
             type="button"
-            className="w-full flex items-center justify-center gap-2 rounded-xl border border-gray-300 px-4 py-3 hover:bg-gray-100 transition"
+            className="w-full flex cursor-pointer items-center justify-center gap-2 rounded-xl border border-gray-300 px-4 py-3 hover:bg-gray-100 transition"
           >
             <Image
               src="/googleicon.png"
